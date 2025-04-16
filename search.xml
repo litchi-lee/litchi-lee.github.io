@@ -4,11 +4,86 @@
   
     
     <entry>
+      <title>调色不重要？调色很重要</title>
+      <link href="/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/"/>
+      <url>/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="总结贴">总结贴</h1><p>示例图片有点糊…为了加载速度只能压缩画质了</p><h2 id="日系蓝色胶片">日系蓝色胶片</h2><h3 id="基本">基本</h3><p>色温 - 色调 +</p><p>曝光适度 对比 - 白色色阶 - 黑色色阶 +</p><h3 id="曲线">曲线</h3><p>稍微下拉，亮部降暗部升</p><p>红色通道暗部下拉</p><h3 id="混色器">混色器</h3><p>绿色相 - 蓝色相 +</p><p>暖色饱和度 + 冷色饱和度（尤其蓝色） -</p><p>暖色明度 + 冷色明度（尤其蓝色） -</p><h3 id="颜色分级">颜色分级</h3><p>阴影偏青，高光偏黄绿</p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/lr1.png" width="50%" /></p><h2 id="亮调春花">亮调春花</h2><h3 id="基本-1">基本</h3><p>色温 + 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 - 清晰度 + 去朦胧 -</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-1">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-1">混色器</h3><p>橙绿色相 - 红蓝色相 +</p><p>暖色及蓝色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-1">颜色分级</h3><p>中间色调及阴影偏青，高光偏黄绿</p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/lr2.png" width="50%" /></p><h2 id="暗调春花">暗调春花</h2><h3 id="基本-2">基本</h3><p>色温 - 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 + 清晰度 - 去朦胧 +</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-2">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-2">混色器</h3><p>蓝橙色相 - 红绿色相 +</p><p>暖色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-2">颜色分级</h3><p>阴影偏青，中间色调偏黄绿，高光偏橙黄</p><h3 id="蒙版">蒙版</h3><p>径向蒙版模拟打光（曝光+色温+），反向蒙版加深对比</p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/lr3.png" width="50%" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Lightroom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PS入门笔记</title>
+      <link href="/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+      <url>/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Photoshop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Lightroom入门笔记</title>
+      <link href="/2025/04/16/photograph/Lightroom/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+      <url>/2025/04/16/photograph/Lightroom/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<p>教程来自摄影师泰罗</p><h1 id="lr系统教程">LR系统教程</h1><h2id="第一期照片管理筛选与批量处理">第一期、照片管理、筛选与批量处理</h2><p>PS是重新分配空间来处理照片，而LR是建立软连接到导入照片路径。</p><ul><li>注意在导入时有几个选项：包括<strong>复制、移动、添加</strong></li><li>添加是不会改变数据存储路径的，只是建立了一个映射；</li><li>而移动则是将照片从硬盘中移动到本地。</li></ul><h2 id="第二期直方图与曝光补偿">第二期、直方图与曝光补偿</h2><h3 id="直方图的原理">直方图的原理</h3><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image2.png" width="50%" /></p><p>直方图是关于亮度的统计报告图，横坐标是0-255的亮度级别，越右越亮；纵坐标表示该亮度级别下像素数量的多少。</p><h2 id="第三期曲线">第三期、曲线</h2><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image3.png" width="30%" /></p><p>通过映射重塑直方图</p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image4.png" width="50%" /></p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image5.png" width="50%" /></p><p>胶片灰</p><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image6.png" width="30%" /></p><p><strong>曲线调色原理：</strong>分别在RGB三种模式下调色，对应模式下调高曝光会加重对应色调、反之加重对应补色色调</p><p>曲线调色案例：</p><ul><li>日系小清新：RGB稍过曝（变亮）、G阴影稍高（阴影偏绿）、B阴影稍低（阴影偏暖）、R整体调低（整张图偏青）</li><li>暖色调电影感：RGB稍过曝、R整体偏低、B整体调低</li></ul><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image7.png" width="50%" /></p><h2 id="第四期色温色调以及分离色调">第四期、色温色调以及分离色调</h2><p>调曲线过于复杂，不如关注眼前的工具</p><pre><code>城市夜景人文调色思路之一：降低色温、降低色调、提亮阴影、二次构图（2.35：1）</code></pre><p>色温色调的缺陷：过于整体</p><p>分离色调：分别为高光和阴影分别调色相</p><pre><code>一个有意思的调色思路：阴影偏黄绿、高光偏冷青</code></pre><p><strong>曲线工具 VS 分离色调</strong></p><p>曲线工具精确选择区域不精确赋予色彩；分离色调不精确选择区域精确选择色彩</p><h2 id="第五期hsl调色">第五期、HSL调色</h2><p>更精细的局部调色</p><p>一个调色思路是各种色相都向对应高光或阴影色调调整，以达成整体和谐的效果</p><p>用于学习大佬调色思路的网站：<ahref="https://anvaka.github.io/pixchart/?d=4&amp;ignore=&amp;link=&amp;groupBy=hsl.h">https://anvaka.github.io/pixchart/?d=4&amp;ignore=&amp;link=&amp;groupBy=hsl.h</a></p><h2id="第六期锐化清晰度等局部调整工具">第六期、锐化、清晰度等局部调整工具</h2><p>锐化的本质：描边 + 数量：描边越明显 +半径：描边的粗细程度（一般保持默认） +细节：描边的黑白反差（一般保持默认） +蒙版：使用alt键可以查看，保护纯净的背景不被锐化</p><p>清晰度：没有描边、加大色块交界处的差异（黑色更黑、白色更白）</p><p>其实照片想要表现出清晰与高质，重点不在于锐化和清晰度，也不在于像素的多少，而在于<strong>信息的表达</strong></p><p>less ismore（删繁就简）、秩序（画面元素达到统一）、色彩对比虚实对比明亮对比</p><p>在<code>蒙版</code>中将主体部分提亮、将背景部分变暗</p><h2 id="第七期提升摄影后期水准">第七期、提升摄影后期水准</h2><p>降噪：高ISO会造成明度噪点和彩色噪点这两种，分别使用明亮度和颜色按钮调节，一般明亮度不能给太高、而颜色可以给高</p><p>镜头校正：消除镜头带来的偏移以及曲变</p><p>导出：质量可以选择60（默认）、如果要发朋友圈调整图像大小以适合短边、像素选择1080（可以避免微信的二次压缩）</p><p><strong>平面构成、立体构成、色彩构成</strong></p><p>简单矫正<span class="math inline">→</span>局部修饰<spanclass="math inline">→</span>艺术加工</p><h2 id="第八期让图片更干净">第八期、让图片更干净</h2><ul><li>压低曲线的高光、提高曝光值（关键步骤）</li><li>压缩曲线的阴影</li><li>提高橙色，追加一些饱和度，红色追加饱和度（针对图片中有人像的情况，让皮肤和嘴唇更好看）</li><li>绿色的色相往右滑动，明度和饱和度提高（让树木更精神）</li><li>蓝色色相向右滑动</li><li>曲线红色通道稍微下压，使整张图偏青</li></ul><h2 id="第九期油画感教程">第九期、油画感教程</h2><blockquote><p>油画风特征分析： + 饱和度高、对比度中 + 色系统一 +细节模糊、整体清晰</p></blockquote><p><img src="https://raw.githubusercontent.com/litchi-lee/Images_shop/main/images/image8.png" width="50%" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Lightroom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Davinci学习之初级学习笔记</title>
       <link href="/2025/04/05/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/"/>
       <url>/2025/04/05/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="davinci入门学习">Davinci入门学习</h1><p>主要参考影视飓风的达芬奇教程，这里是leo的学习笔记，我的主要需求其实是调色，其他的部分应该只是大致浏览一下。</p><h2 id="入门简介">入门简介</h2><p>创作视频的一般流程：</p><ul><li>导入素材进行分类：<code>媒体</code> 面板中进行</li><li>进行视频的粗剪、然后进行精细剪辑：<code>快编</code> 及<code>剪辑</code> 面板中进行</li><li>效果制作、调色、音频调整：分别对应<code>Fusion</code>、<code>调色</code>、<code>Fairlight</code> 面板</li><li>导出视频：<code>交付</code> 面板</li></ul><h3 id="媒体面板">媒体面板</h3><p>通常流程是我们通过<strong>媒体浏览器</strong>找到素材所在文件夹，在<strong>监视器</strong>中回看，选择需要的素材拖拽到<strong>素材池</strong>中，等待剪辑。</p><p>达芬奇素材池进行项目管理有一个很大的弊端：一旦导入素材，就无法更改项目的帧率，容易造成后期视频的跳帧或卡顿（Davinci17后可以更改了）。</p><blockquote><p>解决方法：需要在前期导入素材之前，进入 文件-项目设置-设置合适的帧率配置项目</p></blockquote><h3 id="快编和剪辑面板">快编和剪辑面板</h3><p>在 <code>剪辑</code> 面板中进行剪辑的一般流程：</p><ul><li>媒体池进行筛选</li><li>在素材监视器中使用 <code>I</code> 键和 <code>O</code>键打下出入点，选出有用的素材拖入时间线进行组装</li><li>通过特效库面板选择对应的音频或视频效果添加转场</li></ul><h3 id="fusion调色fairlight面板">Fusion、调色、Fairlight面板</h3><p>不推荐使用 <code>Fusion</code>制作复杂的效果及动画，节点式工作逻辑复杂。<code>调色</code>面板很强大（这其实也是我的主要需求），<code>Fairlight</code>面板则相当于音频的调色面板。</p><h3 id="交付面板">交付面板</h3><p>通常传播互联网选择 <code>mp4</code> 封装，<code>h264</code>编码，分辨率和帧率则根据需求调整。之后添加到渲染序列进行渲染即可。</p><h2 id="剪辑">剪辑</h2><p>一些Tips：</p><ul><li>建议在 <code>媒体</code>面板中一次性将所有素材放入素材池，然后再进行分类，这样剪辑时不用因为缺少素材又重新添加。</li><li><code>I</code> 键和 <code>O</code>键来打下视频的出入点，可以单独点击画面或音频拖入画面或音频轨道。</li><li>使用 <code>alt</code>+鼠标滚轮 来进行时间线的缩放</li></ul><h3 id="更多工具栏">更多工具栏</h3><table><thead><tr><th style="text-align: center;">工具</th><th style="text-align: center;">快捷键</th><th style="text-align: center;">描述</th></tr></thead><tbody><tr><td style="text-align: center;">鼠标模式</td><td style="text-align: center;">-</td><td style="text-align: center;">快速编辑</td></tr><tr><td style="text-align: center;">修建编辑模式</td><td style="text-align: center;"><code>T</code></td><td style="text-align: center;">波纹删除（适合精剪）</td></tr><tr><td style="text-align: center;">动态修剪模式</td><td style="text-align: center;">-</td><td style="text-align: center;">不经常用</td></tr><tr><td style="text-align: center;">剃刀工具</td><td style="text-align: center;"><code>B</code></td><td style="text-align: center;">素材切刀</td></tr><tr><td style="text-align: center;">素材导入方式</td><td style="text-align: center;">-</td><td style="text-align: center;">分为插入、覆盖以及替换</td></tr></tbody></table><h2 id="添加效果与关键帧">添加效果与关键帧</h2><ul><li>添加转场：打开特效库，拖拽一个转场效果到素材拼接处，可以在检查器中精细调节转场效果</li><li>片段调整：点击一个素材片段，打开检查器，进行缩放、位置、变速等，按住<code>alt</code> 再进行调整能更精细地控制</li><li>添加关键帧：打开检查器，起始帧选中需要变换的参数右侧红色菱形，接着选中结束帧改变参数即可自动加入关键帧。可以打开非线性变换选项，这样比线性的参数变化更有质感（缓动效果）</li><li>批处理：只需要 <code>ctrl+c</code>复制某个已处理好的片段，然后选中需要批处理的其他片段进行粘贴即可</li></ul><blockquote><p>插件推荐：</p><p><ahref="https://www.maxon.net/en/red-giant">红巨星宇宙</a>：很多效果和滤镜预设，一年订阅在1400元</p><p><ahref="https://www.filmconvert.com/">FilmConvert</a>：调色插件，有很多相机预设</p></blockquote>]]></content>
+        <content type="html"><![CDATA[<h1 id="davinci入门学习">Davinci入门学习</h1><p>主要参考影视飓风的达芬奇教程，这里是leo的学习笔记，我的主要需求其实是调色，其他的部分应该只是大致浏览一下。</p><h2 id="入门简介">入门简介</h2><p>创作视频的一般流程：</p><ul><li>导入素材进行分类：<code>媒体</code> 面板中进行</li><li>进行视频的粗剪、然后进行精细剪辑：<code>快编</code> 及<code>剪辑</code> 面板中进行</li><li>效果制作、调色、音频调整：分别对应<code>Fusion</code>、<code>调色</code>、<code>Fairlight</code> 面板</li><li>导出视频：<code>交付</code> 面板</li></ul><h3 id="媒体面板">媒体面板</h3><p>通常流程是我们通过<strong>媒体浏览器</strong>找到素材所在文件夹，在<strong>监视器</strong>中回看，选择需要的素材拖拽到<strong>素材池</strong>中，等待剪辑。</p><p>达芬奇素材池进行项目管理有一个很大的弊端：一旦导入素材，就无法更改项目的帧率，容易造成后期视频的跳帧或卡顿（Davinci17后可以更改了）。</p><blockquote><p>解决方法：需要在前期导入素材之前，进入 文件-项目设置-设置合适的帧率配置项目</p></blockquote><h3 id="快编和剪辑面板">快编和剪辑面板</h3><p>在 <code>剪辑</code> 面板中进行剪辑的一般流程：</p><ul><li>媒体池进行筛选</li><li>在素材监视器中使用 <code>I</code> 键和 <code>O</code>键打下出入点，选出有用的素材拖入时间线进行组装</li><li>通过特效库面板选择对应的音频或视频效果添加转场</li></ul><h3 id="fusion调色fairlight面板">Fusion、调色、Fairlight面板</h3><p>不推荐使用 <code>Fusion</code>制作复杂的效果及动画，节点式工作逻辑复杂。<code>调色</code>面板很强大（这其实也是我的主要需求），<code>Fairlight</code>面板则相当于音频的调色面板。</p><h3 id="交付面板">交付面板</h3><p>通常传播互联网选择 <code>mp4</code> 封装，<code>h264</code>编码，分辨率和帧率则根据需求调整。之后添加到渲染序列进行渲染即可。</p><h2 id="剪辑">剪辑</h2><p>一些Tips：</p><ul><li>建议在 <code>媒体</code>面板中一次性将所有素材放入素材池，然后再进行分类，这样剪辑时不用因为缺少素材又重新添加。</li><li><code>I</code> 键和 <code>O</code>键来打下视频的出入点，可以单独点击画面或音频拖入画面或音频轨道。</li><li>使用 <code>alt</code>+鼠标滚轮 来进行时间线的缩放</li></ul><h3 id="更多工具栏">更多工具栏</h3><table><thead><tr><th style="text-align: center;">工具</th><th style="text-align: center;">快捷键</th><th style="text-align: center;">描述</th></tr></thead><tbody><tr><td style="text-align: center;">鼠标模式</td><td style="text-align: center;">-</td><td style="text-align: center;">快速编辑</td></tr><tr><td style="text-align: center;">修建编辑模式</td><td style="text-align: center;"><code>T</code></td><td style="text-align: center;">波纹删除（适合精剪）</td></tr><tr><td style="text-align: center;">动态修剪模式</td><td style="text-align: center;">-</td><td style="text-align: center;">不经常用</td></tr><tr><td style="text-align: center;">剃刀工具</td><td style="text-align: center;"><code>B</code></td><td style="text-align: center;">素材切刀</td></tr><tr><td style="text-align: center;">素材导入方式</td><td style="text-align: center;">-</td><td style="text-align: center;">分为插入、覆盖以及替换</td></tr></tbody></table><h2 id="添加效果与关键帧">添加效果与关键帧</h2><ul><li>添加转场：打开特效库，拖拽一个转场效果到素材拼接处，可以在检查器中精细调节转场效果</li><li>片段调整：点击一个素材片段，打开检查器，进行缩放、位置、变速等，按住<code>alt</code> 再进行调整能更精细地控制</li><li>添加关键帧：打开检查器，起始帧选中需要变换的参数右侧红色菱形，接着选中结束帧改变参数即可自动加入关键帧。可以打开非线性变换选项，这样比线性的参数变化更有质感（缓动效果）</li><li>批处理：只需要 <code>ctrl+c</code>复制某个已处理好的片段，然后选中需要批处理的其他片段进行粘贴即可</li></ul><blockquote><p>插件推荐：</p><p><ahref="https://www.maxon.net/en/red-giant">红巨星宇宙</a>：很多效果和滤镜预设，一年订阅在1400元</p><p><ahref="https://www.filmconvert.com/">FilmConvert</a>：调色插件，有很多相机预设</p></blockquote><h2 id="快编界面">快编界面</h2><h3 id="预备知识之代理文件的生成">预备知识之代理文件的生成</h3><p>媒体优化：减少电脑负荷</p><p><strong>方案一</strong>（适用于比较简单的剪辑）：播放–代理模式–选择合适的分辨率</p><p><strong>方案二</strong>（适用于复杂的剪辑）：媒体池选中素材，右键生成优化媒体文件</p><p>设置在 文件–项目设置–主设置–优化的媒体和渲染缓存</p><blockquote><p>常用设置：4K视频 选择 分辨率–二分之一 编码–DNXHR SQ</p></blockquote><h3id="预备知识之智能媒体夹及双时间线剪辑">预备知识之智能媒体夹及双时间线剪辑</h3><p>Aroll 主要内容 Broll 辅助时间线</p>]]></content>
       
       
       <categories>
