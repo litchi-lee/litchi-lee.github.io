@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>服务器配置代理</title>
+      <link href="/2025/06/20/AI/agent/"/>
+      <url>/2025/06/20/AI/agent/</url>
+      
+        <content type="html"><![CDATA[<h1 id="服务器配置代理访问外网资源">服务器配置代理，访问外网资源</h1><p>其实大部分在公司或学校的服务器都会受到限制，无法直接访问互联网，但是有时候需要安装或部署的资源在外网，这时候就比较头疼了。</p><p>其实我们也可以通过代理的方式在服务器上访问外网 :)</p><h2 id="本地开启代理">本地开启代理</h2><p>首先开启本地代理（如果本地还不会开代理这个需要自行搜索了），这里以<code>Clash</code>举例：</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/agent_config1.png" width="60%"/></p><p>并且需要将 允许局域网按钮打开，记住这里的端口号<code>7890</code>。</p><h2 id="查找本地ip地址">查找本地ip地址</h2><p>打开powershell，输入<code>ipconfig</code>，找到无线网络的IPv4地址。</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/agent_config2.png" width="60%"/></p><h2 id="服务器配置代理">服务器配置代理</h2><p>在服务器终端输入以下指令即可：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">&quot;http://172.27.139.183:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">&quot;http://172.27.139.183:7890&quot;</span></span><br></pre></td></tr></table></figure><p>其中<code>http://ip:port</code>中的端口号和ip地址分别是第一步和第二步中得到的。</p><p>使用完毕后使用以下指令关闭代理：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span> http_proxy</span><br><span class="line"><span class="built_in">unset</span> https_proxy</span><br></pre></td></tr></table></figure><h2 id="配置专用代理">配置专用代理</h2><p>使用上述方式配置的代理可以被内网里的所有人在这台服务器上使用，如果你想配置专用代理，可以使用以下方法。</p><p>只把代理开在<code>127.0.0.1</code>上（即本地回环地址上），使用SSH来进行端口转发。具体来说，假设你启动了一个http代理服务监听在端口<code>port</code>上，则在服务器上输入指令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -NfR port:127.0.0.1:port username@server_ip</span><br></pre></td></tr></table></figure><p>这个命令用于在远程服务器上开启一个监听<code>port</code>端口的代理服务，并将所有流量通过ssh隧道传输到本地机器上的代理服务。</p><p>之后像之前那样通过<code>export http_proxy=http://127.0.0.1:port &amp;&amp; export https_proxy=http://127.0.0.1:port</code>设置代理就可以了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>NJU2025春季学期-高级机器学习笔记</title>
       <link href="/2025/06/03/course/AML/"/>
       <url>/2025/06/03/course/AML/</url>
