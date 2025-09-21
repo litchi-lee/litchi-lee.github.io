@@ -354,6 +354,31 @@
     
     
     <entry>
+      <title>调色不重要？调色很重要</title>
+      <link href="/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/"/>
+      <url>/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="总结贴">总结贴</h1><p>示例图片有点糊…为了加载速度只能压缩画质了</p><h2 id="日系蓝色胶片">日系蓝色胶片</h2><h3 id="基本">基本</h3><p>色温 - 色调 +</p><p>曝光适度 对比 - 白色色阶 - 黑色色阶 +</p><h3 id="曲线">曲线</h3><p>稍微下拉，亮部降暗部升</p><p>红色通道暗部下拉</p><h3 id="混色器">混色器</h3><p>绿色相 - 蓝色相 +</p><p>暖色饱和度 + 冷色饱和度（尤其蓝色） -</p><p>暖色明度 + 冷色明度（尤其蓝色） -</p><h3 id="颜色分级">颜色分级</h3><p>阴影偏青，高光偏黄绿</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr1.png" width="50%" /></p><h2 id="亮调春花">亮调春花</h2><h3 id="基本-1">基本</h3><p>色温 + 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 - 清晰度 + 去朦胧 -</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-1">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-1">混色器</h3><p>橙绿色相 - 红蓝色相 +</p><p>暖色及蓝色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-1">颜色分级</h3><p>中间色调及阴影偏青，高光偏黄绿</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr2.png" width="50%" /></p><h2 id="暗调春花">暗调春花</h2><h3 id="基本-2">基本</h3><p>色温 - 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 + 清晰度 - 去朦胧 +</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-2">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-2">混色器</h3><p>蓝橙色相 - 红绿色相 +</p><p>暖色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-2">颜色分级</h3><p>阴影偏青，中间色调偏黄绿，高光偏橙黄</p><h3 id="蒙版">蒙版</h3><p>径向蒙版模拟打光（曝光+色温+），反向蒙版加深对比</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr3.png" width="50%" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Lightroom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Lightroom入门笔记</title>
       <link href="/2025/04/16/photograph/Lightroom/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
       <url>/2025/04/16/photograph/Lightroom/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
@@ -396,31 +421,6 @@
         <tags>
             
             <tag> Photoshop </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>调色不重要？调色很重要</title>
-      <link href="/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/"/>
-      <url>/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/</url>
-      
-        <content type="html"><![CDATA[<h1 id="总结贴">总结贴</h1><p>示例图片有点糊…为了加载速度只能压缩画质了</p><h2 id="日系蓝色胶片">日系蓝色胶片</h2><h3 id="基本">基本</h3><p>色温 - 色调 +</p><p>曝光适度 对比 - 白色色阶 - 黑色色阶 +</p><h3 id="曲线">曲线</h3><p>稍微下拉，亮部降暗部升</p><p>红色通道暗部下拉</p><h3 id="混色器">混色器</h3><p>绿色相 - 蓝色相 +</p><p>暖色饱和度 + 冷色饱和度（尤其蓝色） -</p><p>暖色明度 + 冷色明度（尤其蓝色） -</p><h3 id="颜色分级">颜色分级</h3><p>阴影偏青，高光偏黄绿</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr1.png" width="50%" /></p><h2 id="亮调春花">亮调春花</h2><h3 id="基本-1">基本</h3><p>色温 + 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 - 清晰度 + 去朦胧 -</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-1">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-1">混色器</h3><p>橙绿色相 - 红蓝色相 +</p><p>暖色及蓝色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-1">颜色分级</h3><p>中间色调及阴影偏青，高光偏黄绿</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr2.png" width="50%" /></p><h2 id="暗调春花">暗调春花</h2><h3 id="基本-2">基本</h3><p>色温 - 色调 -</p><p>曝光适度 对比 - 高光 - 阴影 + 白色色阶 - 黑色色阶 +</p><p>纹理 + 清晰度 - 去朦胧 +</p><p>鲜艳度 + 饱和度 -</p><h3 id="曲线-2">曲线</h3><p>稍微下拉，暗部升</p><h3 id="混色器-2">混色器</h3><p>蓝橙色相 - 红绿色相 +</p><p>暖色饱和度 + 绿色饱和度 -</p><p>冷色明度 -</p><h3 id="颜色分级-2">颜色分级</h3><p>阴影偏青，中间色调偏黄绿，高光偏橙黄</p><h3 id="蒙版">蒙版</h3><p>径向蒙版模拟打光（曝光+色温+），反向蒙版加深对比</p><p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/lr3.png" width="50%" /></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 摄影 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Lightroom </tag>
             
         </tags>
       
