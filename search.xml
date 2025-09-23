@@ -373,31 +373,6 @@
     
     
     <entry>
-      <title>PS入门笔记</title>
-      <link href="/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
-      <url>/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 摄影 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Photoshop </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Davinci学习之初级学习笔记</title>
       <link href="/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/"/>
       <url>/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</url>
@@ -465,6 +440,31 @@
         <tags>
             
             <tag> Lightroom </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>PS入门笔记</title>
+      <link href="/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+      <url>/2025/04/16/photograph/Photoshop/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 摄影 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Photoshop </tag>
             
         </tags>
       
