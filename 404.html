@@ -187,107 +187,79 @@
 })()</script></div><script>
 (function() {
   function initAPlayer() {
-    if (window.ap) return; // 已经初始化过就不重复
+    // 如果已经存在播放器实例，就直接 return
+    if (window.ap && document.getElementById('aplayer')) return;
 
-    const container = document.createElement('div');
-    container.id = 'aplayer';
-    document.body.appendChild(container);
+    // 如果容器不存在则创建
+    let container = document.getElementById('aplayer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'aplayer';
+      document.body.appendChild(container);
+    }
 
-    window.ap = new APlayer({
-      container: container,
-      fixed: true,        // 固定在底部
-      autoplay: true,     // 自动播放（浏览器可能需要用户交互）
-      order: 'random',    // 随机播放
-      loop: 'all',        // 循环播放
-      preload: 'metadata',
-      volume: 0.7,
-      audio: [
-        {
-          name: 'L\'amore Dice Ciao',
-          artist: 'Armando Trovajoli',
-          url: 'music/audio1.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png'
-        },
-        {
-          name: 'Gymnopedie No.1',
-          artist: 'Erik Satie',
-          url: 'music/audio2.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png'
-        },
-        {
-          name: 'Ladyfingers Lofi',
-          artist: 'Max Riser',
-          url: 'music/audio3.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png'
-        },
-        {
-          name: 'Lujon',
-          artist: 'Henry Mancini',
-          url: 'music/audio4.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png'
-        },
-        {
-          name: 'Green Bird',
-          artist: '菅野よう子',
-          url: 'music/audio5.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover5.png'
-        },
-        {
-          name: 'Change of Seasons',
-          artist: 'Tokyo Music Walker',
-          url: 'music/audio6.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover6.png'
-        },
-        {
-          name: 'L\'hawaïenne',
-          artist: 'La Femme',
-          url: 'music/audio7.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover7.png'
-        },
-        {
-          name: 'パッション･フラワー',
-          artist: '細野晴臣/鈴木茂/山下達郎',
-          url: 'music/audio8.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png'
-        },
-        {
-          name: '半城夏味',
-          artist: '张斯函',
-          url: 'music/audio9.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover9.png'
-        },
-        {
-          name: 'Snowfall',
-          artist: 'Tsundere Twintails',
-          url: 'music/audio10.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png'
-        },
-        {
-          name: 'Simply Satie',
-          artist: 'Michael Dulin',
-          url: 'music/audio11.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover11.png'
-        },
-        {
-          name: 'Gymnopédie no. 1',
-          artist: 'Romi Kopelman',
-          url: 'music/audio12.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover12.png'
-        },
-        {
-          name: 'New Look',
-          artist: 'Secret Potion/Lofi Beats To Chill Study Sleep',
-          url: 'music/audio0.mp3',
-          cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png'
-        }
-      ]
-    });
+    // 只初始化一次
+    if (!window.ap) {
+      window.ap = new APlayer({
+        container: container,
+        fixed: true,
+        autoplay: true,
+        order: 'random',
+        loop: 'all',
+        preload: 'metadata',
+        volume: 0.7,
+        audio: [
+          {
+            name: 'L\'amore Dice Ciao',
+            artist: 'Armando Trovajoli',
+            url: 'music/audio1.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png'
+          },
+          {
+            name: 'Gymnopedie No.1',
+            artist: 'Erik Satie',
+            url: 'music/audio2.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png'
+          },
+          {
+            name: 'Ladyfingers Lofi',
+            artist: 'Max Riser',
+            url: 'music/audio3.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png'
+          },
+          {
+            name: 'Lujon',
+            artist: 'Henry Mancini',
+            url: 'music/audio4.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png'
+          },
+          {
+            name: 'パッション･フラワー',
+            artist: '細野晴臣/鈴木茂/山下達郎',
+            url: 'music/audio8.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png'
+          },
+          {
+            name: 'Snowfall',
+            artist: 'Tsundere Twintails',
+            url: 'music/audio10.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png'
+          },
+          {
+            name: 'New Look',
+            artist: 'Secret Potion/Lofi Beats To Chill Study Sleep',
+            url: 'music/audio0.mp3',
+            cover: 'https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png'
+          }
+        ]
+      });
+    }
   }
 
-  // 首页首次加载
+  // 首次加载执行
   document.addEventListener("DOMContentLoaded", initAPlayer);
 
-  // PJAX 页面跳转后再次调用
+  // PJAX 跳转后执行（仅保证容器存在，不会重复 new）
   document.addEventListener('pjax:end', initAPlayer);
 })();
 </script>
