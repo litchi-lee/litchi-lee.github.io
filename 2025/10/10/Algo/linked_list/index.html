@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>链表算法题 | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用链表解决的算法题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表算法题">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/10/10/Algo/linked_list/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="使用链表解决的算法题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg">
+<meta property="article:published_time" content="2025-10-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T03:13:12.811Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "链表算法题",
+  "url": "https://litchi-lee.github.io/2025/10/10/Algo/linked_list/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg",
+  "datePublished": "2025-10-09T16:00:00.000Z",
+  "dateModified": "2026-02-24T03:13:12.811Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/10/10/Algo/linked_list/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '链表算法题',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/img3.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">链表算法题</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">链表算法题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-09T16:00:00.000Z" title="发表于 2025-10-10 00:00:00">2025-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-24T03:13:12.811Z" title="更新于 2026-02-24 11:13:12">2026-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="链表">链表</h1>
+<p>链表是一种常见的数据结构，适用于需要频繁插入和删除操作的场景。在算法题中，链表通常用于解决一些特定的问题，比如反转链表、合并两个有序链表等。在C++中，链表可以通过自定义结构体或类来实现，也可以使用标准库中的<code>std::list</code>。</p>
+<p>C++链表定义标准模板（具体详见<a
+href="https://litchi-lee.github.io/2025/09/19/Algo/cpp_use/">这里</a>）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    <span class="built_in">ListNode</span>() : <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">ListNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">ListNode</span>(<span class="type">int</span> x, ListNode *next) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(next) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="例题">例题</h2>
+<h3 id="回文链表">1. 回文链表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/palindrome-linked-list/description/">LeetCode
+Hot100: 234.回文链表</a></p>
+<p><strong>简要描述</strong>：给你一个单链表的头节点 head
+，请你判断该链表是否为回文链表。如果是，返回 true ；否则，返回 false
+。</p>
+<p><strong>解题关键</strong>：要判断一个链表是否为回文链表，最容易想到的做法是将链表的值存储到一个数组中，然后使用双指针从数组的两端向中间移动，比较对应位置的值是否相同。如果所有对应位置的值都相同，则链表是回文链表。但是这样做的空间复杂度是
+O(n)，不符合题目的进阶要求。因此我们的思路是，先使用<strong>快慢指针</strong>找到链表的中点，然后将后半部分链表反转，最后再从头和中点开始同时遍历前后两部分链表，比较对应节点的值是否相同。如果所有对应节点的值都相同，则链表是回文链表。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isPalindrome</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        ListNode *end = <span class="built_in">halfOfList</span>(head);</span><br><span class="line">        ListNode *half = <span class="built_in">reverseListNode</span>(end-&gt;next);</span><br><span class="line">        ListNode *ptr1 = head;</span><br><span class="line">        ListNode *ptr2 = half;</span><br><span class="line">        <span class="keyword">while</span>(ptr2!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ptr1-&gt;val != ptr2-&gt;val)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            ptr1 = ptr1-&gt;next;</span><br><span class="line">            ptr2 = ptr2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseListNode</span><span class="params">(ListNode* head)</span></span>&#123;</span><br><span class="line">        ListNode *prev, *cur, *next;</span><br><span class="line">        prev = <span class="literal">nullptr</span>;</span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = prev;</span><br><span class="line">            prev = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">halfOfList</span><span class="params">(ListNode* head)</span></span>&#123;</span><br><span class="line">        ListNode *ptr1 = head;</span><br><span class="line">        ListNode *ptr2 = head;</span><br><span class="line">        <span class="keyword">while</span>(ptr2-&gt;next!=<span class="literal">nullptr</span> &amp;&amp; ptr2-&gt;next-&gt;next!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            ptr1 = ptr1-&gt;next;</span><br><span class="line">            ptr2 = ptr2-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ptr1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="环形链表">2. 环形链表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle/description/">LeetCode
+Hot100: 141.环形链表</a></p>
+<p><strong>简要描述</strong>：给你一个链表的头节点 head
+，判断链表中是否有环。如果链表中有某个节点，可以通过连续跟踪 next
+指针再次到达，则链表中存在环。为了表示给定链表中的环，评测系统内部使用整数
+pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。注意：pos
+不作为参数进行传递，仅仅是为了标识链表的实际情况。</p>
+<p><strong>解题关键</strong>：这题最容易想到的做法是用哈希表存储已经访问过的节点，然后在遍历链表时检查当前节点是否已经在哈希表中出现过。如果出现过，则说明链表中有环；否则继续遍历直到链表结束。但是这种方法的空间复杂度是
+O(n)，不符合题目的进阶要求。而一种更取巧的做法需要我们对<strong>Floyd判圈法（又称龟兔赛跑算法）</strong>有所了解。该算法使用两个快慢指针，一个快指针每次移动两步，一个慢指针每次移动一步。如果链表中有环，快指针最终会追上慢指针；如果链表中没有环，快指针会先到达链表的末尾。要如何理解最终两个指针一定会相遇呢，可以理解为快指针相对于慢指针的相对步长为1，相当于总存在一个时刻他们经过的距离的差值正好是环的长度，此时两个指针相遇。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *slow = head;</span><br><span class="line">        ListNode *fast = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(slow!=fast)&#123;</span><br><span class="line">            <span class="keyword">if</span>(fast-&gt;next == <span class="literal">nullptr</span> || fast-&gt;next-&gt;next == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>其实这一题还有一种做法，考虑到题目没有要求这个链表不发生改变，我们可以在遍历链表的过程中将访问过的节点的值改为一个不可能出现的值（比如
+INT_MIN），如果在遍历过程中遇到一个节点的值已经是
+INT_MIN，则说明链表中有环。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;val == INT_MIN)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            cur-&gt;val = INT_MIN;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="环形链表ii">3. 环形链表II</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">LeetCode
+Hot100: 142.环形链表 II</a></p>
+<p><strong>简要描述</strong>：给定一个链表的头节点 head
+，返回链表开始入环的第一个节点。如果链表无环，则返回 null。</p>
+<p><strong>解题关键</strong>：这题是上一题的进阶版，要求我们不仅判断链表中是否有环，还要找到环的入口节点。我们仍然可以使用<strong>Floyd判圈法</strong>来解决这个问题。首先，我们使用快慢指针来判断链表中是否有环。如果有环，快慢指针最终会相遇在环中的某个节点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/142_fig1.png" width="60%"/></p>
+<p>如上图假设链表的头节点到环的入口节点的距离为
+a，环的入口节点到快慢指针相遇节点的距离为
+b，相遇节点到环的入口节点的距离为
+c。那么根据快慢指针的移动规律，我们可以得到以下关系：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2 * (a + b) = a + b + n * (b + c)</span><br></pre></td></tr></table></figure>
+<p>其中 n 是快指针在环中绕圈的次数。化简后得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = n * (b + c) - b = (n - 1) * (b + c) + c</span><br></pre></td></tr></table></figure>
+<p>其中 (b + c) 是环的长度，记为
+L。那么我们可以看出，从链表的头节点出发，走 a
+步会到达环的入口节点；而从相遇节点出发，走 (n - 1) * L + c
+步也会到达环的入口节点。由于 (n - 1) * L
+是环的整数倍，因此我们只需要从相遇节点出发，走 c
+步就能到达环的入口节点。基于这个分析，我们可以设计如下算法：</p>
+<ol type="1">
+<li>使用快慢指针判断链表中是否有环。如果没有环，返回 null。</li>
+<li>如果有环，记录快慢指针相遇的节点。</li>
+<li>从链表的头节点和相遇节点分别出发，每次移动一步，直到两个指针相遇。相遇的节点就是环的入口节点。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span> || head-&gt;next ==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *slow = head;</span><br><span class="line">        ListNode *fast = head;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!fast || fast-&gt;next == <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">while</span>(slow!=fast);</span><br><span class="line">        ListNode *ptr = head;</span><br><span class="line">        <span class="keyword">while</span>(ptr!=slow)&#123;</span><br><span class="line">            ptr = ptr-&gt;next;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ptr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="删除链表的倒数第n个节点">4. 删除链表的倒数第N个节点</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/">LeetCode
+Hot100: 19.删除链表的倒数第 N 个结点</a></p>
+<p><strong>简要描述</strong>：给你一个链表，删除链表的倒数第 n
+个结点，并且返回链表的头结点。</p>
+<p><strong>解题关键</strong>：这题可以使用双指针来解决。我们可以设置两个指针，<code>first</code>
+和 <code>second</code>，初始时都指向链表的头节点。然后我们让
+<code>first</code> 指针先移动 n 步，这样 <code>first</code> 和
+<code>second</code> 之间就相隔了 n 个节点。接着我们同时移动
+<code>first</code> 和 <code>second</code> 指针，直到 <code>first</code>
+指针到达链表的末尾。此时，<code>second</code> 指针正好指向倒数第 n
+个节点的前一个节点。我们只需要将 <code>second</code>
+的下一个节点删除即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeNthFromEnd</span><span class="params">(ListNode* head, <span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="built_in">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        ListNode* first = &amp;dummy;</span><br><span class="line">        ListNode* second = &amp;dummy;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            first = first-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(first-&gt;next != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            first = first-&gt;next;</span><br><span class="line">            second = second-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* toDelete = second-&gt;next;</span><br><span class="line">        second-&gt;next = second-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">delete</span> toDelete;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="k个一组翻转链表">5. K个一组翻转链表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-nodes-in-k-group/description/">LeetCode
+Hot100: 25.K 个一组翻转链表</a></p>
+<p><strong>简要描述</strong>：给你一个链表，每 k
+个节点一组进行翻转，请你返回翻转后的链表。k
+是一个正整数，它的值小于或等于链表的长度。如果节点总数不是 k
+的整数倍，那么请将最后剩余的节点保持原有顺序。</p>
+<p><strong>解题关键</strong>：这题直接用迭代的方法来做即可，题目的要求是每
+k
+个节点一组进行翻转，因此我们可以使用一个循环来处理每一组节点。在每一组中，我们需要先检查是否有足够的节点进行翻转，如果不足
+k 个节点，则直接返回当前链表。否则，我们就对这 k
+个节点进行翻转（反转链表的方式和之前一致），并将翻转后的链表连接到前一组的末尾。为了方便处理链表的头节点，我们可以使用一个虚拟头节点（哑结点）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseKGroup</span><span class="params">(ListNode* head, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="built_in">ListNode</span>(<span class="number">0</span>, head);</span><br><span class="line">        ListNode* head_prev = &amp;dummy;</span><br><span class="line">        <span class="keyword">while</span>(head_prev)&#123;</span><br><span class="line">            ListNode* tail = head_prev;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k;i++)&#123;</span><br><span class="line">                tail = tail-&gt;next;</span><br><span class="line">                <span class="keyword">if</span>(!tail)&#123;</span><br><span class="line">                    <span class="keyword">return</span> dummy.next;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            head_prev = <span class="built_in">reverseList</span>(head_prev, k);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head_prev, <span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">        ListNode* head = head_prev-&gt;next;</span><br><span class="line">        ListNode *prev, *cur, *next;</span><br><span class="line">        prev = <span class="literal">nullptr</span>;</span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="keyword">while</span>(k&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = prev;</span><br><span class="line">            prev = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        head_prev-&gt;next = prev;</span><br><span class="line">        head-&gt;next = cur;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="随机链表的复制">6. 随机链表的复制</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/copy-list-with-random-pointer/description/">LeetCode
+Hot100: 138.复制带随机指针的链表</a></p>
+<p><strong>简要描述</strong>：给你一个长度为 n
+的链表，每个节点包含一个额外增加的随机指针 random
+，该指针可以指向链表中的任何节点或空节点。构造这个链表的 深拷贝
+。深拷贝应该正好由 n 个 全新
+节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 next
+指针和 random
+指针也都应指向复制链表中的新节点，以确保原链表和复制链表中对应节点之间的相对位置关系保持不变。返回复制链表的头节点。</p>
+<p><strong>解题关键</strong>：这题可以使用<strong>哈希表</strong>来解决。我们可以遍历原链表，对于每个节点，创建一个新的节点，并将原节点和新节点的映射关系存储在哈希表中。然后我们再遍历一次原链表，使用哈希表来设置新节点的
+next 和 random 指针。最后返回新链表的头节点即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        unordered_map&lt;Node*, Node*&gt; mp;</span><br><span class="line">        Node* cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            mp[cur] = <span class="keyword">new</span> <span class="built_in">Node</span>(cur-&gt;val);</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        Node *old, *_new;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;p:mp)&#123;</span><br><span class="line">            old = p.first;</span><br><span class="line">            _new = p.second;</span><br><span class="line">            _new-&gt;next = old-&gt;next==<span class="literal">nullptr</span> ? <span class="literal">nullptr</span>: mp[old-&gt;next];</span><br><span class="line">            _new-&gt;random = old-&gt;random==<span class="literal">nullptr</span> ? <span class="literal">nullptr</span>: mp[old-&gt;random];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> mp[head];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这样做的空间复杂度是 <span
+class="math inline">𝒪(<em>n</em>)</span>，如果想要降低空间复杂度，可以使用一种更巧妙的方法，在原链表中插入新节点，然后再分离出新链表，这样做的空间复杂度是
+<span class="math inline">𝒪(1)</span>。具体做法如下： 1.
+遍历原链表，对于每个节点，创建一个新的节点，并将新节点插入到原节点的后面。
+2. 再次遍历链表，设置新节点的 random 指针（random
+指针指向原链表中对应节点的 random 指针的后一项）。 3.
+最后通过设置每个原节点和新节点的 next 指针分离出新链表。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">copyRandomList</span><span class="params">(Node* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node* cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            Node* newNode = <span class="keyword">new</span> <span class="built_in">Node</span>(cur-&gt;val);</span><br><span class="line">            newNode-&gt;next = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = newNode;</span><br><span class="line">            cur = newNode-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cur-&gt;random)&#123;</span><br><span class="line">                cur-&gt;next-&gt;random = cur-&gt;random-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        Node* newHead = head-&gt;next;</span><br><span class="line">        cur = head;</span><br><span class="line">        <span class="keyword">while</span>(cur)&#123;</span><br><span class="line">            Node* temp = cur-&gt;next;</span><br><span class="line">            cur-&gt;next = temp-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(temp-&gt;next)&#123;</span><br><span class="line">                temp-&gt;next = temp-&gt;next-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="排序链表">7. 排序链表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/sort-list/description/">LeetCode
+Hot100: 148.排序链表</a></p>
+<p><strong>简要描述</strong>：给你链表的头结点 head ，请将其按 升序
+排列并返回 排序后的链表 ，要求时间复杂度为 O(n log n) 。</p>
+<p><strong>解题关键</strong>：这题可以使用<strong>归并排序</strong>来解决。归并排序是一种分治算法，适用于链表排序，因为它不需要额外的空间来存储数组。具体做法如下：
+1. 使用快慢指针找到链表的中点，将链表分成两半。 2.
+递归地对两半链表进行归并排序。 3. 合并两个排序后的链表。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head || !head-&gt;next)&#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode* mid = <span class="built_in">findMiddle</span>(head);</span><br><span class="line">        ListNode* left = <span class="built_in">sortList</span>(head);</span><br><span class="line">        ListNode* right = <span class="built_in">sortList</span>(mid);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(left, right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">findMiddle</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        ListNode* slow=head;</span><br><span class="line">        ListNode* fast=head;</span><br><span class="line">        <span class="keyword">while</span>(fast!=tail)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(fast!=tail)&#123;</span><br><span class="line">                fast = fast-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">merge</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode dummy = <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode* cur = &amp;dummy;</span><br><span class="line">        <span class="keyword">while</span>(l1 &amp;&amp; l2) &#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val) &#123;</span><br><span class="line">                cur-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;next = l1 ? l1 : l2;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="合并k个排序链表">8. 合并K个排序链表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-k-sorted-lists/description/">LeetCode
+Hot100: 23.合并K个排序链表</a></p>
+<p><strong>简要描述</strong>：给你一个链表数组，每个链表都已经按升序排列，请将它们合并成一个新的升序链表。</p>
+<p><strong>解题关键</strong>：这题可以使用<strong>优先队列</strong>（小根堆）来解决。我们可以将每个链表的头节点放入优先队列中，然后不断取出最小的节点，并将其加入到结果链表中，同时将该节点的下一个节点放入优先队列中。这样可以保证每次取出的节点都是当前所有链表中的最小值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;pair&lt;<span class="type">int</span>, ListNode*&gt;, vector&lt;pair&lt;<span class="type">int</span>, ListNode*&gt;&gt;, greater&lt;pair&lt;<span class="type">int</span>, ListNode*&gt;&gt;&gt; pq;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; head : lists) &#123;</span><br><span class="line">            <span class="keyword">if</span>(head) &#123;</span><br><span class="line">                pq.<span class="built_in">push</span>(&#123;head-&gt;val, head&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummy = <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode* cur = &amp;dummy;</span><br><span class="line">        <span class="keyword">while</span>(!pq.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            <span class="keyword">auto</span> [val, node] = pq.<span class="built_in">top</span>();</span><br><span class="line">            pq.<span class="built_in">pop</span>();</span><br><span class="line">            cur-&gt;next = node;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next) &#123;</span><br><span class="line">                pq.<span class="built_in">push</span>(&#123;node-&gt;next-&gt;val, node-&gt;next&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>也可以使用分治法来合并 K
+个排序链表。具体做法是将链表两两合并，直到只剩下一个链表，这种做法可以直接利用之前实现的合并两个排序链表的函数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">merge2Lists</span><span class="params">(ListNode* l1, ListNode* l2)</span></span>&#123;</span><br><span class="line">        ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>();</span><br><span class="line">        ListNode* cur = dummy;</span><br><span class="line">        <span class="keyword">while</span>(l1 &amp;&amp; l2)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val&lt;=l2-&gt;val)&#123;</span><br><span class="line">                cur-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                cur-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        cur-&gt;next = l1 ? l1 : l2;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">merge</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists, <span class="type">int</span> l, <span class="type">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l&gt;r) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span>(l==r) <span class="keyword">return</span> lists[l];</span><br><span class="line">        <span class="type">int</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge2Lists</span>(<span class="built_in">merge</span>(lists, l, mid), <span class="built_in">merge</span>(lists, mid<span class="number">+1</span>, r));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeKLists</span><span class="params">(vector&lt;ListNode*&gt;&amp; lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(lists, <span class="number">0</span>, lists.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="lru缓存机制">9. LRU缓存机制</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/description/">LeetCode
+Hot100: 146.LRU缓存机制</a></p>
+<p><strong>简要描述</strong>：设计并实现一个满足 LRU (最近最少使用) 缓存
+约束的数据结构。实现 LRUCache 类： - <code>LRUCache(int capacity)</code>
+以 正整数 作为容量 capacity 初始化 LRU - <code>int get(int key)</code>
+如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。 -
+<code>void put(int key, int value)</code> 如果关键字 key
+已经存在，则变更其数据值 value ；如果不存在，则向缓存中插入该组
+key-value
+。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p>
+<p><strong>解题关键</strong>：这题可以使用<strong>哈希表</strong>和<strong>双向链表</strong>来实现。哈希表用于快速查找缓存中的数据，双向链表用于维护数据的使用顺序。每次访问数据时，我们将该数据节点移动到链表的头部，表示它是最近使用的数据。当缓存容量达到上限时，我们删除链表尾部的节点，表示删除最久未使用的数据。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">DListNode</span>&#123;</span><br><span class="line">    <span class="type">int</span> key, val;</span><br><span class="line">    DListNode *prev;</span><br><span class="line">    DListNode *next;</span><br><span class="line">    <span class="built_in">DListNode</span>(): <span class="built_in">key</span>(<span class="number">0</span>), <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">prev</span>(<span class="literal">nullptr</span>), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">DListNode</span>(<span class="type">int</span> _key, <span class="type">int</span> _val): <span class="built_in">key</span>(_key), <span class="built_in">val</span>(_val), <span class="built_in">prev</span>(<span class="literal">nullptr</span>), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LRUCache</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    unordered_map&lt;<span class="type">int</span>, DListNode*&gt; cache;</span><br><span class="line">    DListNode *head,  *tail;</span><br><span class="line">    <span class="type">int</span> size;</span><br><span class="line">    <span class="type">int</span> volume;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">LRUCache</span>(<span class="type">int</span> capacity) &#123;</span><br><span class="line">        head = <span class="keyword">new</span> <span class="built_in">DListNode</span>();</span><br><span class="line">        tail = <span class="keyword">new</span> <span class="built_in">DListNode</span>();</span><br><span class="line">        head-&gt;next = tail;</span><br><span class="line">        tail-&gt;prev = head;</span><br><span class="line">        volume = capacity;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">get</span><span class="params">(<span class="type">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.<span class="built_in">count</span>(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        DListNode* node = cache[key];</span><br><span class="line">        <span class="built_in">moveToHead</span>(node);</span><br><span class="line">        <span class="keyword">return</span> node-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">put</span><span class="params">(<span class="type">int</span> key, <span class="type">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.<span class="built_in">count</span>(key))&#123;</span><br><span class="line">            DListNode *node = <span class="keyword">new</span> <span class="built_in">DListNode</span>(key, value);</span><br><span class="line">            cache[key] = node;</span><br><span class="line">            <span class="built_in">addToHead</span>(node);</span><br><span class="line">            size++;</span><br><span class="line">            <span class="keyword">if</span>(size &gt; volume)&#123;</span><br><span class="line">                DListNode* removed = <span class="built_in">removeTail</span>();</span><br><span class="line">                cache.<span class="built_in">erase</span>(removed-&gt;key);</span><br><span class="line">                <span class="keyword">delete</span> removed;</span><br><span class="line">                size--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            DListNode* node = cache[key];</span><br><span class="line">            node-&gt;val = value;</span><br><span class="line">            <span class="built_in">moveToHead</span>(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addToHead</span><span class="params">(DListNode* node)</span></span>&#123;</span><br><span class="line">        node-&gt;next = head-&gt;next;</span><br><span class="line">        node-&gt;prev = head;</span><br><span class="line">        head-&gt;next-&gt;prev = node;</span><br><span class="line">        head-&gt;next = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">removeNode</span><span class="params">(DListNode* node)</span></span>&#123;</span><br><span class="line">        node-&gt;prev-&gt;next = node-&gt;next;</span><br><span class="line">        node-&gt;next-&gt;prev = node-&gt;prev;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">moveToHead</span><span class="params">(DListNode* node)</span></span>&#123;</span><br><span class="line">        <span class="built_in">removeNode</span>(node);</span><br><span class="line">        <span class="built_in">addToHead</span>(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">DListNode* <span class="title">removeTail</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DListNode* node = tail-&gt;prev;</span><br><span class="line">        <span class="built_in">removeNode</span>(node);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/10/10/Algo/linked_list/">https://litchi-lee.github.io/2025/10/10/Algo/linked_list/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Algorithm/">Algorithm</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/09/28/Algo/array/" title="普通数组算法题"><img class="cover" src="/img/bg4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">普通数组算法题</div></div><div class="info-2"><div class="info-item-1">使用普通数组解决的算法题</div></div></div></a><a class="pagination-related" href="/2025/10/29/Algo/binary_tree/" title="二叉树算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">二叉树算法题</div></div><div class="info-2"><div class="info-item-1">涉及二叉树的常见算法题</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/09/28/Algo/array/" title="普通数组算法题"><img class="cover" src="/img/bg4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-28</div><div class="info-item-2">普通数组算法题</div></div><div class="info-2"><div class="info-item-1">使用普通数组解决的算法题</div></div></div></a><a class="pagination-related" href="/2025/11/19/Algo/binary_search/" title="二分查找算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-19</div><div class="info-item-2">二分查找算法题</div></div><div class="info-2"><div class="info-item-1">涉及二分查找的常见算法题</div></div></div></a><a class="pagination-related" href="/2025/09/19/Algo/cpp_use/" title="C++常用STL结构体以及常用语法点"><img class="cover" src="/img/bg1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-19</div><div class="info-item-2">C++常用STL结构体以及常用语法点</div></div><div class="info-2"><div class="info-item-1">C++中常用的结构体定义和使用方法、以及常用语法点</div></div></div></a><a class="pagination-related" href="/2025/11/11/Algo/dfs/" title="回溯算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-11</div><div class="info-item-2">回溯算法题</div></div><div class="info-2"><div class="info-item-1">使用回溯算法解决的算法题</div></div></div></a><a class="pagination-related" href="/2025/10/29/Algo/binary_tree/" title="二叉树算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-29</div><div class="info-item-2">二叉树算法题</div></div><div class="info-2"><div class="info-item-1">涉及二叉树的常见算法题</div></div></div></a><a class="pagination-related" href="/2025/11/06/Algo/graph/" title="图论算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-06</div><div class="info-item-2">图论算法题</div></div><div class="info-2"><div class="info-item-1">涉及图论的算法题</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-text">链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8"><span class="toc-text">1. 回文链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8"><span class="toc-text">2. 环形链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8ii"><span class="toc-text">3. 环形链表II</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text">4. 删除链表的倒数第N个节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#k%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">5. K个一组翻转链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6"><span class="toc-text">6. 随机链表的复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">7. 排序链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6k%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">8. 合并K个排序链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lru%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="toc-text">9. LRU缓存机制</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特殊技巧算法题"/></a><div class="content"><a class="title" href="/2025/12/25/Algo/others/" title="特殊技巧算法题">特殊技巧算法题</a><time datetime="2025-12-24T16:00:00.000Z" title="发表于 2025-12-25 00:00:00">2025-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/16/Algo/greedy/" title="贪心算法题"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贪心算法题"/></a><div class="content"><a class="title" href="/2025/12/16/Algo/greedy/" title="贪心算法题">贪心算法题</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站王树森老师推荐系统公开课"/></a><div class="content"><a class="title" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课">B站王树森老师推荐系统公开课</a><time datetime="2025-12-14T16:00:00.000Z" title="发表于 2025-12-15 00:00:00">2025-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/Algo/sort/" title="排序"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序"/></a><div class="content"><a class="title" href="/2025/11/24/Algo/sort/" title="排序">排序</a><time datetime="2025-11-23T16:00:00.000Z" title="发表于 2025-11-24 00:00:00">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/img3.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

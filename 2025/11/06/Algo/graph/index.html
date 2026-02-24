@@ -1,0 +1,429 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>图论算法题 | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="涉及图论的算法题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图论算法题">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/11/06/Algo/graph/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="涉及图论的算法题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png">
+<meta property="article:published_time" content="2025-11-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T03:13:12.810Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "图论算法题",
+  "url": "https://litchi-lee.github.io/2025/11/06/Algo/graph/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png",
+  "datePublished": "2025-11-05T16:00:00.000Z",
+  "dateModified": "2026-02-24T03:13:12.810Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/11/06/Algo/graph/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '图论算法题',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/img3.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">图论算法题</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">图论算法题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-11-05T16:00:00.000Z" title="发表于 2025-11-06 00:00:00">2025-11-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-24T03:13:12.810Z" title="更新于 2026-02-24 11:13:12">2026-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="图论">图论</h1>
+<p>图论是研究图的性质和应用的数学分支，图由顶点和边组成。在算法题中，图论常常用于解决网络流、最短路径、最小生成树等问题。在C++中，图可以通过邻接矩阵或邻接表来表示。</p>
+<p>除此之外，图论算法题中常用的算法包括深度优先搜索（DFS）、广度优先搜索（BFS）、Dijkstra算法、Floyd-Warshall算法、Kruskal算法和Prim算法等，以及常用的数据结构如并查集（Union-Find）。</p>
+<p>并查集是一种用于处理不相交集合的数据结构，支持合并集合和查找元素所属集合的操作。它在图论中常用于判断连通性、检测环等问题。其C++实现通常包括路径压缩和按大小合并两种优化技术，以提高操作效率：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UnionFind</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">UnionFind</span>(<span class="type">int</span> n) : <span class="built_in">parent</span>(n), <span class="built_in">size</span>(n, <span class="number">1</span>), <span class="built_in">count</span>(n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (parent[x] != x) &#123;</span><br><span class="line">            parent[x] = <span class="built_in">find</span>(parent[x]); <span class="comment">// 路径压缩</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> parent[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> rootX = <span class="built_in">find</span>(x);</span><br><span class="line">        <span class="type">int</span> rootY = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span> (rootX != rootY) &#123;</span><br><span class="line">            <span class="comment">// 按大小合并</span></span><br><span class="line">            <span class="keyword">if</span> (size[rootX] &lt; size[rootY]) &#123;</span><br><span class="line">                parent[rootX] = rootY;</span><br><span class="line">                size[rootY] += size[rootX];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent[rootY] = rootX;</span><br><span class="line">                size[rootX] += size[rootY];</span><br><span class="line">            &#125;</span><br><span class="line">            --count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">connected</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getCount</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; parent;</span><br><span class="line">    std::vector&lt;<span class="type">int</span>&gt; size;</span><br><span class="line">    <span class="type">int</span> count;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="例题">例题</h2>
+<h3 id="岛屿数量">1. 岛屿数量</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-islands/description/">LeetCode
+Hot100: 200.岛屿数量</a></p>
+<p><strong>简要描述</strong>：给你一个由 <code>'1'</code>（陆地）和
+<code>'0'</code>（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和竖直方向上相邻的陆地连接形成。</p>
+<p><strong>解题关键</strong>：可以使用深度优先搜索（DFS）或广度优先搜索（BFS）来遍历网格中的每个陆地节点，并将其相邻的陆地节点标记为已访问。每次遇到一个未访问的陆地节点时，岛屿数量加一。除此之外，也可以使用并查集来实现，这里给出用并查集实现的思路：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UnionFind</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">UnionFind</span>(<span class="type">int</span> n) : <span class="built_in">parent</span>(n), <span class="built_in">size</span>(n, <span class="number">1</span>), <span class="built_in">count</span>(n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            parent[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (parent[x] != x) &#123;</span><br><span class="line">            parent[x] = <span class="built_in">find</span>(parent[x]); <span class="comment">// 路径压缩</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> parent[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">unite</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> rootX = <span class="built_in">find</span>(x);</span><br><span class="line">        <span class="type">int</span> rootY = <span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span> (rootX != rootY) &#123;</span><br><span class="line">            <span class="comment">// 按大小合并</span></span><br><span class="line">            <span class="keyword">if</span> (size[rootX] &lt; size[rootY]) &#123;</span><br><span class="line">                parent[rootX] = rootY;</span><br><span class="line">                size[rootY] += size[rootX];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent[rootY] = rootX;</span><br><span class="line">                size[rootX] += size[rootY];</span><br><span class="line">            &#125;</span><br><span class="line">            --count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">connected</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(x) == <span class="built_in">find</span>(y);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getCount</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numIslands</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(m==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">UnionFind <span class="title">uf</span><span class="params">(m*n)</span></span>;</span><br><span class="line">        <span class="type">int</span> waterCount = <span class="number">0</span>;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; directions = &#123;&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                    grid[i][j] = <span class="string">&#x27;0&#x27;</span>; <span class="comment">// 标记为已访问</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; dir: directions)&#123;</span><br><span class="line">                        <span class="type">int</span> ni = i + dir.first;</span><br><span class="line">                        <span class="type">int</span> nj = j + dir.second;</span><br><span class="line">                        <span class="keyword">if</span>(ni&gt;=<span class="number">0</span> &amp;&amp; ni&lt;m &amp;&amp; nj&gt;=<span class="number">0</span> &amp;&amp; nj&lt;n &amp;&amp; grid[ni][nj]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                            uf.<span class="built_in">unite</span>(i*n+j, ni*n+nj);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    waterCount++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uf.<span class="built_in">getCount</span>() - waterCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="腐烂的橘子">2. 腐烂的橘子</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotting-oranges/description/">LeetCode
+Hot100: 994.腐烂的橘子</a></p>
+<p><strong>简要描述</strong>：在给定的网格中，每个单元格可以有以下三个值之一：</p>
+<ul>
+<li>值 <code>0</code> 代表空单元格；</li>
+<li>值 <code>1</code> 代表新鲜橘子；</li>
+<li>值 <code>2</code> 代表腐烂的橘子。</li>
+<li>每分钟，任何与腐烂橘子（在 4
+个正方向上相邻）相邻的新鲜橘子都会腐烂。返回直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回
+<code>-1</code>。</li>
+</ul>
+<p><strong>解题关键</strong>：可以使用广度优先搜索（BFS）来模拟腐烂过程。首先将所有腐烂的橘子加入队列，然后每次从队列中取出一个腐烂的橘子，检查其四个方向上的新鲜橘子，并将它们标记为腐烂并加入队列。重复此过程直到队列为空，最后检查是否还有新鲜橘子未被腐烂。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">orangesRotting</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = grid.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(m==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> n = grid[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        queue&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="type">int</span> freshCount = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(grid[i][j]==<span class="number">2</span>)&#123;</span><br><span class="line">                    q.<span class="built_in">push</span>(&#123;i,j&#125;);</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span>(grid[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">                    freshCount++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(freshCount==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        vector&lt;pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt;&gt; directions = &#123;&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;&#125;;</span><br><span class="line">        <span class="type">int</span> minutes = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">            <span class="type">bool</span> rottenThisMinute = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">                <span class="keyword">auto</span> [x,y] = q.<span class="built_in">front</span>();</span><br><span class="line">                q.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; dir: directions)&#123;</span><br><span class="line">                    <span class="type">int</span> nx = x + dir.first;</span><br><span class="line">                    <span class="type">int</span> ny = y + dir.second;</span><br><span class="line">                    <span class="keyword">if</span>(nx&gt;=<span class="number">0</span> &amp;&amp; nx&lt;m &amp;&amp; ny&gt;=<span class="number">0</span> &amp;&amp; ny&lt;n &amp;&amp; grid[nx][ny]==<span class="number">1</span>)&#123;</span><br><span class="line">                        grid[nx][ny] = <span class="number">2</span>;</span><br><span class="line">                        q.<span class="built_in">push</span>(&#123;nx,ny&#125;);</span><br><span class="line">                        freshCount--;</span><br><span class="line">                        rottenThisMinute = <span class="literal">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(rottenThisMinute) minutes++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> freshCount==<span class="number">0</span> ? minutes : <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="课程表">3. 课程表</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule/description/">LeetCode
+Hot100: 207.课程表</a></p>
+<p><strong>简要描述</strong>：你这个学期必须选修 <code>numCourses</code>
+门课程，记为 <code>0</code> 到
+<code>numCourses-1</code>。在选修某些课程之前需要一些先修课程。先修课程按数组
+<code>prerequisites</code> 给出，其中
+<code>prerequisites[i] = [ai, bi]</code> 表示如果要选修课程
+<code>ai</code> 则必须先选修课程
+<code>bi</code>。请你判断是否可能完成所有课程的学习？</p>
+<p><strong>解题关键</strong>：可以将课程和先修关系表示为有向图，然后使用拓扑排序来判断图中是否存在环。如果存在环，则无法完成所有课程；否则可以完成所有课程。而这个过程可以使用Kahn算法实现，即计算每个节点的入度，然后从入度为0的节点（没有前置课程，可学习）开始进行BFS遍历，维护一个队列，逐步减少相邻节点的入度（前置课程已有一门被学习），每次将入度为0的节点加入队列，最终判断是否所有节点都被访问过。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canFinish</span><span class="params">(<span class="type">int</span> numCourses, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(numCourses);</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">indegree</span><span class="params">(numCourses, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; pre: prerequisites)&#123;</span><br><span class="line">            graph[pre[<span class="number">1</span>]].<span class="built_in">push_back</span>(pre[<span class="number">0</span>]);</span><br><span class="line">            indegree[pre[<span class="number">0</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;numCourses;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(indegree[i]==<span class="number">0</span>) q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> curr = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; neighbor: graph[curr])&#123;</span><br><span class="line">                indegree[neighbor]--;</span><br><span class="line">                <span class="keyword">if</span>(indegree[neighbor]==<span class="number">0</span>) q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count==numCourses;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="实现trie-前缀树">4. 实现Trie (前缀树)</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-trie-prefix-tree/description/">LeetCode
+Hot100: 208.实现Trie (前缀树)</a></p>
+<p><strong>简要描述</strong>：Trie（前缀树，又叫字典树）是一种用于高效存储和检索字符串的数据结构，具体来说，它可以用于实现单词的插入、搜索和前缀匹配等操作，Trie的每一层代表字符串的一个字符，每一个节点存储具体的字符。实现一个Trie类，包含插入、搜索和前缀搜索等功能。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/Tries.png" width="50%"/></p>
+<p><strong>解题关键</strong>：Trie的实现通常使用嵌套的节点结构，每个节点包含一个字符数组或哈希表来存储子节点，以及一个布尔值来标记该节点是否为一个完整单词的结尾。以下是Trie的C++实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Trie</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;Trie*&gt; children;</span><br><span class="line">    <span class="type">bool</span> isEnd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Trie</span>() : <span class="built_in">children</span>(<span class="number">26</span>), <span class="built_in">isEnd</span>(<span class="literal">false</span>) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> s:word)&#123;</span><br><span class="line">            <span class="type">int</span> i = s - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span>(!node-&gt;children[i]) node-&gt;children[i] = <span class="keyword">new</span> <span class="built_in">Trie</span>();</span><br><span class="line">            node = node-&gt;children[i];</span><br><span class="line">        &#125;</span><br><span class="line">        node-&gt;isEnd = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">Trie* <span class="title">findPrefix</span><span class="params">(string word)</span></span>&#123;</span><br><span class="line">        Trie* node = <span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> s:word)&#123;</span><br><span class="line">            <span class="type">int</span> i = s - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">            <span class="keyword">if</span>(!node-&gt;children[i]) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">            node = node-&gt;children[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">search</span><span class="params">(string word)</span> </span>&#123;</span><br><span class="line">        Trie* node = <span class="built_in">findPrefix</span>(word);</span><br><span class="line">        <span class="keyword">return</span> node!=<span class="literal">nullptr</span> &amp;&amp; node-&gt;isEnd ;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">startsWith</span><span class="params">(string prefix)</span> </span>&#123;</span><br><span class="line">        Trie* node = <span class="built_in">findPrefix</span>(prefix);</span><br><span class="line">        <span class="keyword">return</span> node!=<span class="literal">nullptr</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="被围绕的区域">5. 被围绕的区域</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/surrounded-regions/description/">LeetCode
+经典150: 130.被围绕的区域</a></p>
+<p><strong>简要描述</strong>：给你一个 <code>m x n</code> 的矩阵 board
+，由若干字符 <code>'X'</code> 和 <code>'O'</code> ，找到所有被
+<code>'X'</code> 围绕的区域，并将这些区域里所有的 <code>'O'</code> 用
+<code>'X'</code> 填充。</p>
+<p><strong>解题关键</strong>：可以使用深度优先搜索（DFS）或广度优先搜索（BFS）来标记与边界相连的
+<code>'O'</code>，然后将未被标记的 <code>'O'</code> 替换为
+<code>'X'</code>。具体步骤如下：</p>
+<ul>
+<li>从边界上的 <code>'O'</code> 开始，使用DFS或BFS将所有与之相连的
+<code>'O'</code> 标记为特殊字符（如 <code>'#'</code>）。</li>
+<li>遍历整个矩阵，将未被标记的 <code>'O'</code> 替换为
+<code>'X'</code>，将标记为 <code>'#'</code> 的字符还原为
+<code>'O'</code>。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> m, n;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j, vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span> || i&gt;=m || j&lt;<span class="number">0</span> || j&gt;=n || board[i][j]!=<span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        board[i][j] = <span class="string">&#x27;P&#x27;</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(i<span class="number">-1</span>, j, board);</span><br><span class="line">        <span class="built_in">dfs</span>(i<span class="number">+1</span>, j, board);</span><br><span class="line">        <span class="built_in">dfs</span>(i, j<span class="number">-1</span>, board);</span><br><span class="line">        <span class="built_in">dfs</span>(i, j<span class="number">+1</span>, board);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        m = board.<span class="built_in">size</span>();</span><br><span class="line">        n = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(i, <span class="number">0</span>, board);</span><br><span class="line">            <span class="built_in">dfs</span>(i, n<span class="number">-1</span>, board);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="built_in">dfs</span>(<span class="number">0</span>, i, board);</span><br><span class="line">            <span class="built_in">dfs</span>(m<span class="number">-1</span>, i, board);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j]==<span class="string">&#x27;X&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(board[i][j]==<span class="string">&#x27;O&#x27;</span>) board[i][j]=<span class="string">&#x27;X&#x27;</span>;</span><br><span class="line">                <span class="keyword">else</span> board[i][j]=<span class="string">&#x27;O&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="克隆图">6. 克隆图</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/clone-graph/description/">LeetCode
+经典150: 133.克隆图</a></p>
+<p><strong>简要描述</strong>：给你无向连通图中一个节点的引用，请你返回该图的深拷贝（克隆）。图中的每个节点都包含它的值
+<code>val</code> （int） 和其邻居列表（list[Node]）。</p>
+<p><strong>解题关键</strong>：我们可以用广度优先来遍历原图，关键在于邻居列表该如何创建，考虑到在创建一个节点时，其邻居节点可能还没有被创建，因此我们需要使用一个哈希表来存储已经创建的节点，储存从原节点到新节点的映射关系。在遍历过程中，如果遇到一个未创建的邻居节点，就创建它并加入映射表，然后将其加入队列继续遍历。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">Node* <span class="title">cloneGraph</span><span class="params">(Node* node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node==<span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        unordered_map&lt;Node*, Node*&gt; visit;</span><br><span class="line">        queue&lt;Node*&gt; q;</span><br><span class="line">        Node* root = <span class="keyword">new</span> <span class="built_in">Node</span>(node-&gt;val);</span><br><span class="line">        visit[node] = root;</span><br><span class="line">        q.<span class="built_in">push</span>(node);</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            Node* cur = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> n:cur-&gt;neighbors)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!visit.<span class="built_in">count</span>(n))&#123;</span><br><span class="line">                    Node* tmp = <span class="keyword">new</span> <span class="built_in">Node</span>(n-&gt;val);</span><br><span class="line">                    visit[n] = tmp;</span><br><span class="line">                    q.<span class="built_in">push</span>(n);</span><br><span class="line">                &#125;</span><br><span class="line">                visit[cur]-&gt;neighbors.<span class="built_in">push_back</span>(visit[n]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="课程表ii">7. 课程表II</h3>
+<p><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/course-schedule-ii/description/">LeetCode
+经典150: 210.课程表 II</a></p>
+<p><strong>简要描述</strong>：你这个学期必须选修 <code>numCourses</code>
+门课程，记为 <code>0</code> 到
+<code>numCourses-1</code>。在选修某些课程之前需要一些先修课程。先修课程按数组
+<code>prerequisites</code> 给出，其中
+<code>prerequisites[i] = [ai, bi]</code> 表示如果要选修课程
+<code>ai</code> 则必须先选修课程
+<code>bi</code>。请你返回一个可能的修课顺序。如果不存在合法的修课顺序，返回一个空数组。</p>
+<p><strong>解题关键</strong>：与课程表I类似，我们可以使用拓扑排序来解决这个问题。这里我们不仅需要判断是否存在环，还需要记录课程的顺序。我们可以在BFS遍历过程中，将每次访问的节点加入结果数组，最后如果结果数组的长度等于课程数，则返回该数组，否则返回空数组。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">findOrder</span><span class="params">(<span class="type">int</span> numCourses, vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">graph</span>(numCourses);</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">indegree</span><span class="params">(numCourses, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; pre: prerequisites)&#123;</span><br><span class="line">            graph[pre[<span class="number">1</span>]].<span class="built_in">push_back</span>(pre[<span class="number">0</span>]);</span><br><span class="line">            indegree[pre[<span class="number">0</span>]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;numCourses;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(indegree[i]==<span class="number">0</span>) q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; order;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            <span class="type">int</span> curr = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            order.<span class="built_in">push_back</span>(curr);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span>&amp; neighbor: graph[curr])&#123;</span><br><span class="line">                indegree[neighbor]--;</span><br><span class="line">                <span class="keyword">if</span>(indegree[neighbor]==<span class="number">0</span>) q.<span class="built_in">push</span>(neighbor);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> order.<span class="built_in">size</span>()==numCourses ? order : <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/11/06/Algo/graph/">https://litchi-lee.github.io/2025/11/06/Algo/graph/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Algorithm/">Algorithm</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/10/29/Algo/binary_tree/" title="二叉树算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">二叉树算法题</div></div><div class="info-2"><div class="info-item-1">涉及二叉树的常见算法题</div></div></div></a><a class="pagination-related" href="/2025/11/11/Algo/dfs/" title="回溯算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">回溯算法题</div></div><div class="info-2"><div class="info-item-1">使用回溯算法解决的算法题</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/09/28/Algo/array/" title="普通数组算法题"><img class="cover" src="/img/bg4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-28</div><div class="info-item-2">普通数组算法题</div></div><div class="info-2"><div class="info-item-1">使用普通数组解决的算法题</div></div></div></a><a class="pagination-related" href="/2025/11/19/Algo/binary_search/" title="二分查找算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-19</div><div class="info-item-2">二分查找算法题</div></div><div class="info-2"><div class="info-item-1">涉及二分查找的常见算法题</div></div></div></a><a class="pagination-related" href="/2025/09/19/Algo/cpp_use/" title="C++常用STL结构体以及常用语法点"><img class="cover" src="/img/bg1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-19</div><div class="info-item-2">C++常用STL结构体以及常用语法点</div></div><div class="info-2"><div class="info-item-1">C++中常用的结构体定义和使用方法、以及常用语法点</div></div></div></a><a class="pagination-related" href="/2025/11/11/Algo/dfs/" title="回溯算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-11</div><div class="info-item-2">回溯算法题</div></div><div class="info-2"><div class="info-item-1">使用回溯算法解决的算法题</div></div></div></a><a class="pagination-related" href="/2025/10/29/Algo/binary_tree/" title="二叉树算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-29</div><div class="info-item-2">二叉树算法题</div></div><div class="info-2"><div class="info-item-1">涉及二叉树的常见算法题</div></div></div></a><a class="pagination-related" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img class="cover" src="/img/bg4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-25</div><div class="info-item-2">特殊技巧算法题</div></div><div class="info-2"><div class="info-item-1">一些使用特殊技巧的算法题</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E8%AE%BA"><span class="toc-text">图论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-text">例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F"><span class="toc-text">1. 岛屿数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%85%90%E7%83%82%E7%9A%84%E6%A9%98%E5%AD%90"><span class="toc-text">2. 腐烂的橘子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A1%A8"><span class="toc-text">3. 课程表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0trie-%E5%89%8D%E7%BC%80%E6%A0%91"><span class="toc-text">4. 实现Trie (前缀树)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F"><span class="toc-text">5. 被围绕的区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8B%E9%9A%86%E5%9B%BE"><span class="toc-text">6. 克隆图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E8%A1%A8ii"><span class="toc-text">7. 课程表II</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特殊技巧算法题"/></a><div class="content"><a class="title" href="/2025/12/25/Algo/others/" title="特殊技巧算法题">特殊技巧算法题</a><time datetime="2025-12-24T16:00:00.000Z" title="发表于 2025-12-25 00:00:00">2025-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/16/Algo/greedy/" title="贪心算法题"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贪心算法题"/></a><div class="content"><a class="title" href="/2025/12/16/Algo/greedy/" title="贪心算法题">贪心算法题</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站王树森老师推荐系统公开课"/></a><div class="content"><a class="title" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课">B站王树森老师推荐系统公开课</a><time datetime="2025-12-14T16:00:00.000Z" title="发表于 2025-12-15 00:00:00">2025-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/Algo/sort/" title="排序"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序"/></a><div class="content"><a class="title" href="/2025/11/24/Algo/sort/" title="排序">排序</a><time datetime="2025-11-23T16:00:00.000Z" title="发表于 2025-11-24 00:00:00">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/img3.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

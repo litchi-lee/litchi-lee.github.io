@@ -1,0 +1,616 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>DPM-Solver和DPM-Solver++ | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DPM-Solver和DPM-Solver++的介绍和如何应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DPM-Solver和DPM-Solver++">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/09/23/AIGC/DPM-Solver/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="DPM-Solver和DPM-Solver++的介绍和如何应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg">
+<meta property="article:published_time" content="2025-09-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T03:13:12.808Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="AIGC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DPM-Solver和DPM-Solver++",
+  "url": "https://litchi-lee.github.io/2025/09/23/AIGC/DPM-Solver/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg",
+  "datePublished": "2025-09-22T16:00:00.000Z",
+  "dateModified": "2026-02-24T03:13:12.808Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/09/23/AIGC/DPM-Solver/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'DPM-Solver和DPM-Solver++',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/img2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">DPM-Solver和DPM-Solver++</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">DPM-Solver和DPM-Solver++</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-24T03:13:12.808Z" title="更新于 2026-02-24 11:13:12">2026-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="dpm-solver和dpm-solver">DPM-Solver和DPM-Solver++</h1>
+<h2 id="dpm-solver">1.DPM-Solver</h2>
+<p>原论文：<a
+target="_blank" rel="noopener" href="http://arxiv.org/abs/2206.00927">http://arxiv.org/abs/2206.00927</a></p>
+<p>源码：<a
+target="_blank" rel="noopener" href="https://github.com/LuChengTHU/dpm-solver">https://github.com/LuChengTHU/dpm-solver</a></p>
+<h3 id="背景介绍">1.1.背景介绍</h3>
+<p>当时扩散概率模型（Diffusion Probabilistic Models,
+DPMs）在图像生成等任务上效果非常好，但它们的一个核心问题是<strong>采样速度慢</strong>。通常需要数百到上千步神经网络前向计算才能生成一张样本，这相比
+GAN、VAE 的单步生成要慢得多，限制了实际应用。</p>
+<p>而采样可以被看作是求解扩散过程对应的 ODE（概率流 ODE）或
+SDE。现有两类加速方法：</p>
+<ul>
+<li><p>需要再训练的蒸馏类方法（如 Progressive
+Distillation），可以减少采样步数，但需要额外训练，泛化性差；</p></li>
+<li><p>训练无关的方法（如 DDIM, Analytic-DDPM,
+PNDM），直接作用在预训练模型上，但一般仍需 50
+步左右才能得到高质量样本。</p></li>
+</ul>
+<h3 id="dpm-solver-方法">1.2.DPM-Solver 方法</h3>
+<p>作者提出了
+DPM-Solver，一种专为扩散ODE设计的高阶求解器。<strong>DPM-Solver 能够在
+10 步以内生成高质量样本，且无需额外训练。</strong></p>
+<h4 id="ode求解器">1.2.1.ODE求解器</h4>
+<p>我们回顾一下在SDE中的逆向SDE过程：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathrm{d} x_t=\left[f(t) x_t+\frac{g^2(t)}{\sigma_t}
+\epsilon_\theta\left(x_t, t\right)\right] \mathrm{d} t+g(t) \mathrm{d}
+\bar{w}_t, x_T \sim q_T\left(x_T\right)
+\end{split}
+$$</span></p>
+<blockquote>
+<p>上述式子是一个连续时间SDE，为了使用计算机求解需要将其离散化，<span
+class="math inline"><em>d</em><em>t</em></span>需要变成时间步长<span
+class="math inline"><em>Δ</em><em>t</em></span>。由于最后一项<span
+class="math inline"><em>g</em>(<em>t</em>)d<em>w̄</em><sub><em>t</em></sub></span>维纳过程的存在，SDE的求解存在随机性，一旦步长变大就会出现很大的误差，甚至无法收敛，因此原DDPM等方法需要非常小的步长（大约1000步）才能得到高质量样本。</p>
+</blockquote>
+<p>但是后续宋飏老师等人发现该逆向SDE存在一个在每个时间步的边际分布都相同的<strong>ODE</strong>，可以通过求解ODE得到和SDE同样的结果：</p>
+<p><span class="math display">$$
+\begin{split}
+    \frac{\mathrm{d} x_t}{\mathrm{~d} t}=f(t) x_t+\frac{g^2(t)}{2
+\sigma_t} \epsilon_\theta\left(x_t, t\right), \quad x_T \sim
+q_T\left(x_T\right)
+\end{split}
+$$</span></p>
+<p>通过求解ODE，已经可以将采样步数从1000步减少到50步左右。比如DDIM就是一种一阶的ODE求解器，PNDM是二阶ODE求解器。</p>
+<h4 id="dpm-solver的核心思想">1.2.2.DPM-Solver的核心思想</h4>
+<p>DPM-Solver观察到了ODE方程的半线性性质，即前一项是关于<span
+class="math inline"><em>x</em><sub><em>t</em></sub></span>的线性函数，后一项是关于<span
+class="math inline"><em>t</em></span>的非线性函数。基于此，DPM-Solver将ODE方程转化为一个等价的积分形式（推导省略）：</p>
+<p><span class="math display">$$
+\begin{split}
+    x_t=e^{\int_s^t f(\tau) d \tau} x_s+\int_s^t e^{\int_\tau^t f(r)
+\mathrm{d} r} \frac{g^2(\tau)}{2 \sigma_\tau}
+\epsilon_\theta\left(x_\tau, \tau\right) \mathrm{d} \tau
+\end{split}
+$$</span></p>
+<p>定义<span
+class="math inline"><em>λ</em><sub><em>t</em></sub> := <em>l</em><em>o</em><em>g</em>(<em>α</em><sub><em>t</em></sub>/<em>σ</em><sub><em>t</em></sub>)</span>，并用<span
+class="math inline"><em>λ</em><sub><em>t</em></sub></span>代替<span
+class="math inline"><em>t</em></span>，则上式可以继续推导成一个非常简洁的形式：</p>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{x_t=\frac{\alpha_t}{\alpha_s} x_s-\alpha_t
+\int_{\lambda_s}^{\lambda_t} e^{-\lambda}
+\epsilon_\theta\left(x_\lambda, \lambda\right) \mathrm{d} \lambda}
+\end{split}
+$$</span></p>
+<p>观察这个式子，可以发现形式非常简洁，其实从EDM开始大家就注意到<span
+class="math inline"><em>t</em></span>和noise
+level之间存在一个一一对应的关系，并尝试抛弃<span
+class="math inline"><em>t</em></span>，这里DPM-Solver使用log(SNR)作为新的时间变量，进一步简化了形式。式子中的第一项<span
+class="math inline">$\frac{\alpha_t}{\alpha_s}
+x_s$</span>是一个线性项，可以直接计算出来，不受步长影响；第二项是一个指数衰减积分，无法精确计算，作者提出使用泰勒展开来近似计算该积分。</p>
+<h4 id="dpm-solver的具体形式">1.2.3.DPM-Solver的具体形式</h4>
+<p>我们现在将无法进行精确计算的那一项式子单拎出来看：</p>
+<p><span class="math display">$$
+\begin{split}
+    I=\int_{\lambda_s}^{\lambda_t} e^{-\lambda}
+\epsilon_\theta\left(x_\lambda, \lambda\right) \mathrm{d} \lambda
+\end{split}
+$$</span></p>
+<p>作者在<span
+class="math inline"><em>λ</em><sub><em>i</em></sub></span>处对<span
+class="math inline"><em>ϵ</em><sub><em>θ</em></sub>(<em>x</em><sub><em>λ</em></sub>, <em>λ</em>)</span>进行泰勒展开，记区间长度为<span
+class="math inline"><em>h</em> = <em>λ</em><sub><em>t</em></sub> − <em>λ</em><sub><em>s</em></sub></span>，则有：</p>
+<p><span class="math display">$$
+\begin{split}
+    {\varepsilon}_\theta({x}_\lambda,\lambda)\approx{\varepsilon}_\theta({x}_{\lambda_i},\lambda_i)+(\lambda-\lambda_i)\frac{d}{d\lambda}{\varepsilon}_\theta({x}_\lambda,\lambda)|_{\lambda_i}+\cdots
+\end{split}
+$$</span></p>
+<p>代入积分，可以得到：</p>
+<p><span class="math display">$$
+\begin{split}
+    I\approx\sum_{n=0}^{k-1}\frac{1}{n!}{\varepsilon}_\theta^{(n)}({x}_{\lambda_i},\lambda_i)\int_{\lambda_i}^{\lambda_{i+1}}e^{-\lambda}(\lambda-\lambda_i)^nd\lambda+O(h^k)
+\end{split}
+$$</span></p>
+<p>这样积分的误差项就是<span
+class="math inline"><em>O</em>(<em>h</em><sup><em>k</em></sup>)</span>，得到一个k阶精度的数值解法。</p>
+<p><strong>一阶求解器（DPM-Solver-1）：</strong></p>
+<p>最简单的情况就是取<span
+class="math inline"><em>k</em> = 1</span>，即在每个区间内使用常数近似：</p>
+<p><span class="math display">$$
+\begin{split}
+\begin{aligned}
+    x_{t}&amp;=\frac{\alpha_{t}}{\alpha_{s}}x_{s}-\sigma_{t}(e^{h}-1)\epsilon_{\theta}(x_{s},s)+\mathcal{O}(h)
+\\
+    &amp;=\frac{\alpha_{t}}{\alpha_{s}}x_{s}-\alpha_{t}(\frac{\sigma_{s}}{\alpha_{s}}-\frac{\sigma_{t}}{\alpha_{t}})\epsilon_{\theta}(x_{s},s)+\mathcal{O}(h)
+\end{aligned}
+\end{split}
+$$</span></p>
+<p>可以发现上述形式就是DDIM的形式。</p>
+<p><strong>二阶求解器（DPM-Solver-2）：</strong></p>
+<p>在求解高阶求解器时，有一个问题，就是需要计算高阶导数项<span
+class="math inline"><em>ε</em><sub><em>θ</em></sub><sup>(<em>n</em>)</sup>(<em>x</em><sub><em>λ</em><sub><em>i</em></sub></sub>, <em>λ</em><sub><em>i</em></sub>)</span>，但是这些项是由神经网络计算出来的，无法直接计算。作者提出使用有限差分来近似计算这些高阶导数项，即用中间点来接近近似导数（多采样一次）。</p>
+<blockquote>
+<p><em>为什么可以近似?</em></p>
+<p>数值积分中常用做法： <span class="math display">$$
+\begin{split}
+  \int_a^bf(x)dx\approx\left(b-a\right)f\left(\frac{a+b}{2}\right)
+\end{split}
+$$</span>
+这里的思想是如果函数在区间上变化不大，那么用区间中点的函数值乘以区间长度来近似积分值是合理的。</p>
+</blockquote>
+<p><strong>三阶求解器（DPM-Solver-3）：</strong></p>
+<p>在求解三阶求解器时，作者同样使用有限差分来近似计算高阶导数项，由于要计算二阶导数，因此相当于需要多采样两次（分别取<span
+class="math inline">$\frac{2}{3}$</span>和<span
+class="math inline">$\frac{1}{3}$</span>位置的点）。</p>
+<h2 id="dpm-solver-1">2.DPM-Solver++</h2>
+<p>原论文：<a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2211.01095">https://arxiv.org/abs/2211.01095</a></p>
+<p>源码：<a
+target="_blank" rel="noopener" href="https://github.com/LuChengTHU/dpm-solver">https://github.com/LuChengTHU/dpm-solver</a></p>
+<h3 id="背景介绍-1">2.1.背景介绍</h3>
+<p>之前提出的DPM-Solver使用高阶求解器来求解扩散ODE，在无引导采样时效果很好，但是引导采样下，尤其是在large
+guidance
+scale下，会出现不稳定的情况。不仅如此，在大的引导尺度下，会出现”train-test
+mismatch”问题，即生成的样本会超过训练时的分布范围，导致生成样本质量下降，业界主要使用动态阈值等方法来缓解这个问题，但没有一个高效求解器将这些方法结合起来。</p>
+<h3 id="dpm-solver-方法-1">2.2.DPM-Solver++ 方法</h3>
+<p>总的来说，DPM-Solver++ 的改进可以从三个方面来看：</p>
+<h4 id="从噪声预测到数据预测">2.2.1.从噪声预测到数据预测</h4>
+<p>之前用噪声重参数化的逆向ODE为：</p>
+<p><span class="math display">$$
+\begin{split}
+    \frac{\mathrm{d} x_t}{\mathrm{~d} t}=f(t) x_t+\frac{g^2(t)}{2
+\sigma_t} \epsilon_\theta\left(x_t, t\right), \quad x_T \sim
+q_T\left(x_T\right)
+\end{split}
+$$</span></p>
+<p>DPM-Solver是在这个ODE上进行求解的，而DPM-Solver++提出使用<strong>数据重参数化</strong>的逆向ODE：</p>
+<p><span class="math display">$$
+\begin{split}
+    \frac{\mathrm{d} \boldsymbol{x}_t}{\mathrm{~d}
+t}=\left(f(t)+\frac{g^2(t)}{2 \sigma_t^2}\right)
+\boldsymbol{x}_t-\frac{\alpha_t g^2(t)}{2 \sigma_t^2}
+\boldsymbol{x}_\theta\left(\boldsymbol{x}_t, t\right), \quad
+\boldsymbol{x}_T \sim \mathcal{N}\left(\mathbf{0}, \tilde{\sigma}^2
+\boldsymbol{I}\right)
+\end{split}
+$$</span></p>
+<p>这个转变的动机是数据预测模型可以直接预测去噪后的图像，其输出通常被限制在训练数据的边界内（例如常用的[-1,
+1]范围），从而缓解了train-test
+mismatch问题。经过一系列推导，我们可以得到：</p>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{\tilde{x}_{t_i}=\frac{\sigma_{t_i}}{\sigma_{t_{i-1}}}\tilde{x}_{t_{i-1}}+\sigma_{t_i}\underbrace{\sum_{n=0}^{k-1}x_\theta^{(n)}(\hat{x}_{\lambda_{t_{i-1}}},\lambda_{t_{i-1}})}_{\mathrm{estimated}}\underbrace{\int_{\lambda_{t_{i-1}}}^{\lambda_{t_i}}e^\lambda\frac{(\lambda-\lambda_{t_{i-1}})^n}{n!}\mathrm{d}\lambda}_{\text{analytically
+computed (Appendix
+A)}}+\underbrace{\mathcal{O}(h_i^{k+1})}_{\mathrm{omitted}}}
+\end{split}
+$$</span></p>
+<p>对于高阶中的计算高阶导数项，这里和DPM-Solver中一样使用有限差分来近似计算。但是由于三阶以上在large
+guidance
+scale下极不稳定，因此DPM-Solver++只考虑一阶和二阶求解器。对于这种形式的求解器，作者分别命名为<strong>DPM-Solver++
+1S</strong>和<strong>DPM-Solver++ 2S</strong>。</p>
+<h4 id="从单步求解器到多步求解器">2.2.2.从单步求解器到多步求解器</h4>
+<p>DPM-Solver和其他高阶求解器在单步求解时，使用的是当前时刻<span
+class="math inline"><em>t</em><sub><em>k</em></sub></span>的模型输出及其导数来预测下一个时刻<span
+class="math inline"><em>t</em><sub><em>k</em> − 1</sub></span>的值，这种方法称为单步求解器（one-step
+solver）：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathbf{x}_{k-1}=\Phi(\mathbf{x}_k,t_k,t_{k-1})
+\end{split}
+$$</span></p>
+<p>然而正如之前所讨论的，在大的引导尺度下，梯度会变得非常不稳定，DPM-Solver++提出一个多步求解器来解决这个问题。多步求解器（multi-step
+solver）使用前面多个时刻的模型输出及其导数来预测下一个时刻的值，一个典型的二阶多步求解器形式为：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathbf{x}_{k-1}=\Phi(\mathbf{x}_k,t_k,t_{k-1},\mathbf{x}_{k+1},t_{k+1})
+\end{split}
+$$</span></p>
+<p>这种方法称为线性多步法（linear multi-step
+method），在数值积分中有着悠久的历史。具体来说，DPM-Solver++
+使用了<strong>隐式 Adams-Moulton 方法</strong>和<strong>显式
+Adams-Bashforth
+方法</strong>，这些方法可以利用之前步骤的函数值来更精确地预测下一步。</p>
+<h4 id="动态阈值">2.2.3.动态阈值</h4>
+<p>在大引导尺度下，生成样本的像素值可能会超出训练数据的范围，导致图像质量下降。为了解决这个问题，DPM-Solver++
+引入了动态阈值（dynamic
+thresholding）技术。其基本思想是，在每一步的采样过程中，DPM-Solver++
+会先计算一个去噪后的数据预测 <span
+class="math inline"><strong>x</strong><sub><em>θ</em></sub>(<em>t</em>)</span>。如果这个预测的像素值超出了预定的范围（例如
+[-1,
+1]），它会根据动态阈值的策略，对这些值进行裁剪或缩放。动态阈值的实现方式通常是对预测结果进行逐元素裁剪，具体步骤如下：</p>
+<ol type="1">
+<li>计算预测的图像 <span
+class="math inline"><strong>x</strong><sub>pred</sub> = <strong>x</strong><sub><em>θ</em></sub>(<strong>x</strong><sub><em>t</em></sub>, <em>t</em>)</span>。</li>
+<li>找到图像中像素值的绝对最大值 <span
+class="math inline"><em>s</em> = percentile(|<strong>x</strong><sub>pred</sub>|,<em>p</em>)</span>，通常取第
+99.5 个百分位数。</li>
+<li>对预测图像进行裁剪：<span
+class="math inline"><strong>x</strong><sub>clipped</sub> = <strong>x</strong><sub>pred</sub>/max (<em>s</em>, 1)</span>。</li>
+</ol>
+<h2 id="源码">3.源码</h2>
+<p>关于DPM-Solver和DPM-Solver++的源码在<a
+target="_blank" rel="noopener" href="https://github.com/LuChengTHU/dpm-solver">https://github.com/LuChengTHU/dpm-solver</a>上可以找到。需要重点关注<code>DPM-Solver</code>类的实现，首先我们可以先看一下主要workflow的<code>sample</code>函数是如何实现的（这里简化了很多逻辑）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sample</span>(<span class="params">...</span>):</span><br><span class="line">    <span class="comment"># 参数初始化与检查</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">if</span> method == <span class="string">&#x27;adaptive&#x27;</span>:</span><br><span class="line">            x = 自适应采样(x, ...)</span><br><span class="line">        <span class="keyword">elif</span> method == <span class="string">&#x27;multistep&#x27;</span>:</span><br><span class="line">            <span class="comment"># 初始化时间步</span></span><br><span class="line">            <span class="comment"># 前order步低阶采样</span></span><br><span class="line">            <span class="comment"># 后续高阶采样</span></span><br><span class="line">        <span class="keyword">elif</span> method <span class="keyword">in</span> [<span class="string">&#x27;singlestep&#x27;</span>, <span class="string">&#x27;singlestep_fixed&#x27;</span>]:</span><br><span class="line">            <span class="comment"># 按顺序单步采样</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError</span><br><span class="line">        <span class="comment"># 可选去噪</span></span><br><span class="line">    <span class="comment"># 返回最终结果或中间结果</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>sample</code>函数内部支持四种采样方法，分别是自适应采样（adaptive）、多步采样（multistep）、单步采样（singlestep）和固定单步采样（singlestep_fixed）。其中多步采样和单步采样分别对应DPM-Solver++和DPM-Solver的实现：</p>
+<ol type="1">
+<li><strong>自适应采样（adaptive）</strong>：这种方法会根据当前的误差动态调整步长，从而在保证采样质量的同时提高效率。具体来说，它实现了DPM-Solver-12/DPM-Solver-23：
+<ol type="1">
+<li>order=2 → 每一步先做一阶，再做二阶，比较两者差值估计局部误差；</li>
+<li>order=3 → 每一步先做二阶，再做三阶，比较差值。</li>
+</ol></li>
+<li><strong>多步采样（multistep）</strong>：即DPM-Solver++的多步求解器实现，支持高阶多步方法：
+<ol type="1">
+<li>order=1：退化为 DDIM。</li>
+<li>order=2：先用一步一阶方法 (DDIM) 启动，然后用 Adams-Bashforth-2 /
+Adams-Moulton-2 的 predictor–corrector 来跑后续步骤。</li>
+<li>order=3：先用 1 步一阶 + 1
+步二阶启动，再用三阶多步法跑剩余步骤。</li>
+</ol></li>
+<li><strong>单步采样（singlestep_fixed）</strong>：对DPM-Solver++的单步求解器实现，假设等间隔步长，支持一阶、二阶和三阶单步方法：
+<ol type="1">
+<li>order=1：退化为 DDIM。</li>
+<li>order=2：使用 DPM-Solver++ 2S 的公式。</li>
+<li>order=3：使用 DPM-Solver++ 3S 的公式。</li>
+</ol></li>
+<li><strong>混合单步采样（singlestep_fixed）</strong>：DPM-Solver++对singlestep_fixed的改进版本，支持任意步长</li>
+</ol>
+<h3 id="多步步长实现">3.1.多步步长实现</h3>
+<p>关于这部分的源码为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> steps &gt;= order</span><br><span class="line">timesteps = <span class="variable language_">self</span>.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=steps, device=device)</span><br><span class="line"><span class="keyword">assert</span> timesteps.shape[<span class="number">0</span>] - <span class="number">1</span> == steps</span><br><span class="line"><span class="comment"># Init the initial values.</span></span><br><span class="line">step = <span class="number">0</span></span><br><span class="line">t = timesteps[step]</span><br><span class="line">t_prev_list = [t]</span><br><span class="line">model_prev_list = [<span class="variable language_">self</span>.model_fn(x, t)]</span><br><span class="line"><span class="keyword">if</span> <span class="variable language_">self</span>.correcting_xt_fn <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    x = <span class="variable language_">self</span>.correcting_xt_fn(x, t, step)</span><br><span class="line"><span class="keyword">if</span> return_intermediate:</span><br><span class="line">    intermediates.append(x)</span><br><span class="line"><span class="comment"># Init the first `order` values by lower order multistep DPM-Solver.</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, order):</span><br><span class="line">    t = timesteps[step]</span><br><span class="line">    x = <span class="variable language_">self</span>.multistep_dpm_solver_update(x, model_prev_list, t_prev_list, t, step, solver_type=solver_type)</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.correcting_xt_fn <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = <span class="variable language_">self</span>.correcting_xt_fn(x, t, step)</span><br><span class="line">    <span class="keyword">if</span> return_intermediate:</span><br><span class="line">        intermediates.append(x)</span><br><span class="line">    t_prev_list.append(t)</span><br><span class="line">    model_prev_list.append(<span class="variable language_">self</span>.model_fn(x, t))</span><br><span class="line"><span class="comment"># Compute the remaining values by `order`-th order multistep DPM-Solver.</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(order, steps + <span class="number">1</span>):</span><br><span class="line">    t = timesteps[step]</span><br><span class="line">    <span class="comment"># We only use lower order for steps &lt; 10</span></span><br><span class="line">    <span class="keyword">if</span> lower_order_final <span class="keyword">and</span> steps &lt; <span class="number">10</span>:</span><br><span class="line">        step_order = <span class="built_in">min</span>(order, steps + <span class="number">1</span> - step)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        step_order = order</span><br><span class="line">    x = <span class="variable language_">self</span>.multistep_dpm_solver_update(x, model_prev_list, t_prev_list, t, step_order, solver_type=solver_type)</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.correcting_xt_fn <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = <span class="variable language_">self</span>.correcting_xt_fn(x, t, step)</span><br><span class="line">    <span class="keyword">if</span> return_intermediate:</span><br><span class="line">        intermediates.append(x)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(order - <span class="number">1</span>):</span><br><span class="line">        t_prev_list[i] = t_prev_list[i + <span class="number">1</span>]</span><br><span class="line">        model_prev_list[i] = model_prev_list[i + <span class="number">1</span>]</span><br><span class="line">    t_prev_list[-<span class="number">1</span>] = t</span><br><span class="line">    <span class="comment"># We do not need to evaluate the final model value.</span></span><br><span class="line">    <span class="keyword">if</span> step &lt; steps:</span><br><span class="line">        model_prev_list[-<span class="number">1</span>] = <span class="variable language_">self</span>.model_fn(x, t)</span><br></pre></td></tr></table></figure>
+<p>我们一步步来看，首先是对时间步、模型输出的初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = timesteps[<span class="number">0</span>]</span><br><span class="line">t_prev_list = [t]</span><br><span class="line">model_prev_list = [<span class="variable language_">self</span>.model_fn(x, t)]</span><br></pre></td></tr></table></figure>
+<p>初始时刻<span
+class="math inline"><em>t</em><sub>0</sub> = <em>T</em></span>，存储当前时间步和模型输出，这里相当于初始化第一个梯度点。</p>
+<p>在多步方法开始前，需要至少<code>order</code>个点来进行预测，因此需要先用低阶方法初始化前<code>order-1</code>个点：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, order):</span><br><span class="line">    x = <span class="variable language_">self</span>.multistep_dpm_solver_update(x, model_prev_list, t_prev_list, t, step, solver_type)</span><br><span class="line">    ...</span><br><span class="line">    t_prev_list.append(t)</span><br><span class="line">    model_prev_list.append(<span class="variable language_">self</span>.model_fn(x, t))</span><br></pre></td></tr></table></figure>
+<p>所以前几步使用低阶公式（比如Euler方法）来计算，得到前<code>order</code>个点。之后就进入了多步方法的核心循环：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(order, steps + <span class="number">1</span>):</span><br><span class="line">    ...</span><br><span class="line">    x = <span class="variable language_">self</span>.multistep_dpm_solver_update(x, model_prev_list, t_prev_list, t, step_order, solver_type=solver_type)</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(order - <span class="number">1</span>):</span><br><span class="line">        t_prev_list[i] = t_prev_list[i + <span class="number">1</span>]</span><br><span class="line">        model_prev_list[i] = model_prev_list[i + <span class="number">1</span>]</span><br><span class="line">    t_prev_list[-<span class="number">1</span>] = t</span><br><span class="line">    <span class="keyword">if</span> step &lt; steps:</span><br><span class="line">        model_prev_list[-<span class="number">1</span>] = <span class="variable language_">self</span>.model_fn(x, t)</span><br></pre></td></tr></table></figure>
+<p>在每一步中，使用前<code>order</code>个点的模型输出和时间步来预测下一个点，然后更新存储的点列表。这里的<code>multistep_dpm_solver_update</code>函数实现了具体的多步公式（如Adams-Bashforth或Adams-Moulton）。</p>
+<h3 id="单步步长实现">3.2.单步步长实现</h3>
+<p>这部分源码为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> method == <span class="string">&#x27;singlestep&#x27;</span>:</span><br><span class="line">    timesteps_outer, orders = <span class="variable language_">self</span>.get_orders_and_timesteps_for_singlestep_solver(steps=steps, order=order, skip_type=skip_type, t_T=t_T, t_0=t_0, device=device)</span><br><span class="line"><span class="keyword">elif</span> method == <span class="string">&#x27;singlestep_fixed&#x27;</span>:</span><br><span class="line">    K = steps // order</span><br><span class="line">    orders = [order,] * K</span><br><span class="line">    timesteps_outer = <span class="variable language_">self</span>.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=K, device=device)</span><br><span class="line"><span class="keyword">for</span> step, order <span class="keyword">in</span> <span class="built_in">enumerate</span>(orders):</span><br><span class="line">    s, t = timesteps_outer[step], timesteps_outer[step + <span class="number">1</span>]</span><br><span class="line">    timesteps_inner = <span class="variable language_">self</span>.get_time_steps(skip_type=skip_type, t_T=s.item(), t_0=t.item(), N=order, device=device)</span><br><span class="line">    lambda_inner = <span class="variable language_">self</span>.noise_schedule.marginal_lambda(timesteps_inner)</span><br><span class="line">    h = lambda_inner[-<span class="number">1</span>] - lambda_inner[<span class="number">0</span>]</span><br><span class="line">    r1 = <span class="literal">None</span> <span class="keyword">if</span> order &lt;= <span class="number">1</span> <span class="keyword">else</span> (lambda_inner[<span class="number">1</span>] - lambda_inner[<span class="number">0</span>]) / h</span><br><span class="line">    r2 = <span class="literal">None</span> <span class="keyword">if</span> order &lt;= <span class="number">2</span> <span class="keyword">else</span> (lambda_inner[<span class="number">2</span>] - lambda_inner[<span class="number">0</span>]) / h</span><br><span class="line">    x = <span class="variable language_">self</span>.singlestep_dpm_solver_update(x, s, t, order, solver_type=solver_type, r1=r1, r2=r2)</span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.correcting_xt_fn <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        x = <span class="variable language_">self</span>.correcting_xt_fn(x, t, step)</span><br><span class="line">    <span class="keyword">if</span> return_intermediate:</span><br><span class="line">        intermediates.append(x)</span><br></pre></td></tr></table></figure>
+<p>单步方法的实现相对简单，首先根据选择的方法（<code>singlestep</code>或<code>singlestep_fixed</code>）计算时间步和对应的阶数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> method == <span class="string">&#x27;singlestep&#x27;</span>:</span><br><span class="line">    timesteps_outer, orders = <span class="variable language_">self</span>.get_orders_and_timesteps_for_singlestep_solver(steps=steps, order=order, skip_type=skip_type, t_T=t_T, t_0=t_0, device=device)</span><br><span class="line"><span class="keyword">elif</span> method == <span class="string">&#x27;singlestep_fixed&#x27;</span>:</span><br><span class="line">    K = steps // order</span><br><span class="line">    orders = [order,] * K</span><br><span class="line">    timesteps_outer = <span class="variable language_">self</span>.get_time_steps(skip_type=skip_type, t_T=t_T, t_0=t_0, N=K, device=device)</span><br></pre></td></tr></table></figure>
+<p>对于<code>singlestep</code>，调用
+<code>get_orders_and_timesteps_for_singlestep_solver</code>，根据总步数
+<code>steps</code> 和目标阶数
+<code>order</code>，动态决定每一步是1/2/3阶。这就是论文里说的
+DPM-Solver-fast，组合 1/2/3 阶单步方法，保证用满 <code>steps</code>
+次函数调用。</p>
+<p>对于<code>singlestep_fixed</code>，固定每次都是 <code>order</code>
+阶。比如 <code>order=2</code>，那就是纯二阶单步 DPM-Solver，每次用 2
+个子步近似积分。</p>
+<p>接着遍历每一个大步，对于每个大步，计算对应的内部分割时间步：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> step, order <span class="keyword">in</span> <span class="built_in">enumerate</span>(orders):</span><br><span class="line">    s, t = timesteps_outer[step], timesteps_outer[step + <span class="number">1</span>]</span><br><span class="line">    timesteps_inner = <span class="variable language_">self</span>.get_time_steps(skip_type=skip_type, t_T=s.item(), t_0=t.item(), N=order, device=device)</span><br><span class="line">    lambda_inner = <span class="variable language_">self</span>.noise_schedule.marginal_lambda(timesteps_inner)</span><br><span class="line">    h = lambda_inner[-<span class="number">1</span>] - lambda_inner[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>每个大步<span
+class="math inline">[<em>s</em>, <em>t</em>]</span>内部分成<code>order</code>个子时间点。换句话说，三阶公式需要3个子点，二阶需要2个子点。<code>lambda_inner</code>在<span
+class="math inline"><em>λ</em></span>空间的坐标（<span
+class="math inline"><em>λ</em> = log <em>α</em><sub><em>t</em></sub> − log <em>σ</em><sub><em>t</em></sub></span>，论文定义的log-SNR变量）。</p>
+<p>接着计算出单步公式的系数，用于确定子点在区间中的相对位置：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r1 = <span class="literal">None</span> <span class="keyword">if</span> order &lt;= <span class="number">1</span> <span class="keyword">else</span> (lambda_inner[<span class="number">1</span>] - lambda_inner[<span class="number">0</span>]) / h</span><br><span class="line">r2 = <span class="literal">None</span> <span class="keyword">if</span> order &lt;= <span class="number">2</span> <span class="keyword">else</span> (lambda_inner[<span class="number">2</span>] - lambda_inner[<span class="number">0</span>]) / h</span><br></pre></td></tr></table></figure>
+<p>之后调用单步更新公式，并会有一些额外的修正（比如动态阈值）：
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="variable language_">self</span>.singlestep_dpm_solver_update(x, s, t, order, solver_type=solver_type, r1=r1, r2=r2)</span><br><span class="line"><span class="keyword">if</span> <span class="variable language_">self</span>.correcting_xt_fn <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    x = <span class="variable language_">self</span>.correcting_xt_fn(x, t, step)</span><br><span class="line"><span class="keyword">if</span> return_intermediate:</span><br><span class="line">    intermediates.append(x)</span><br></pre></td></tr></table></figure></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/09/23/AIGC/DPM-Solver/">https://litchi-lee.github.io/2025/09/23/AIGC/DPM-Solver/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AIGC/">AIGC</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/09/22/Algo/dp/" title="动态规划的算法题"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">动态规划的算法题</div></div><div class="info-2"><div class="info-item-1">动态规划在算法中的应用</div></div></div></a><a class="pagination-related" href="/2025/09/24/Algo/string/" title="字符串与子串的算法题"><img class="cover" src="/img/bg1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">字符串与子串的算法题</div></div><div class="info-2"><div class="info-item-1">字符串的基本操作与子串问题</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/17/AIGC/DDIM/" title="DDIM总结"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-17</div><div class="info-item-2">DDIM总结</div></div><div class="info-2"><div class="info-item-1">一些关于DDIM的总结，扒一下源码</div></div></div></a><a class="pagination-related" href="/2025/04/15/AIGC/DDPM/" title="DDPM总结"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-15</div><div class="info-item-2">DDPM总结</div></div><div class="info-2"><div class="info-item-1">主要扒一下DDPM的关键源码</div></div></div></a><a class="pagination-related" href="/2025/05/20/AIGC/MAR/" title="MAR的细节"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-20</div><div class="info-item-2">MAR的细节</div></div><div class="info-2"><div class="info-item-1">一些细节记录</div></div></div></a><a class="pagination-related" href="/2025/05/08/AIGC/DIT/" title="DiT的细节"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-08</div><div class="info-item-2">DiT的细节</div></div><div class="info-2"><div class="info-item-1">一些细节记录</div></div></div></a><a class="pagination-related" href="/2025/04/27/AIGC/LDM/" title="LDM的细节"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="info-item-2">LDM的细节</div></div><div class="info-2"><div class="info-item-1">一些细节记录</div></div></div></a><a class="pagination-related" href="/2025/05/08/AIGC/iDDPM/" title="iDDPM总结"><img class="cover" src="/img/bg1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-08</div><div class="info-item-2">iDDPM总结</div></div><div class="info-2"><div class="info-item-1">一些关于iDDPM的记录，扒一下源码</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#dpm-solver%E5%92%8Cdpm-solver"><span class="toc-text">DPM-Solver和DPM-Solver++</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dpm-solver"><span class="toc-text">1.DPM-Solver</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">1.1.背景介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpm-solver-%E6%96%B9%E6%B3%95"><span class="toc-text">1.2.DPM-Solver 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ode%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="toc-text">1.2.1.ODE求解器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dpm-solver%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-text">1.2.2.DPM-Solver的核心思想</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dpm-solver%E7%9A%84%E5%85%B7%E4%BD%93%E5%BD%A2%E5%BC%8F"><span class="toc-text">1.2.3.DPM-Solver的具体形式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dpm-solver-1"><span class="toc-text">2.DPM-Solver++</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D-1"><span class="toc-text">2.1.背景介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dpm-solver-%E6%96%B9%E6%B3%95-1"><span class="toc-text">2.2.DPM-Solver++ 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%99%AA%E5%A3%B0%E9%A2%84%E6%B5%8B%E5%88%B0%E6%95%B0%E6%8D%AE%E9%A2%84%E6%B5%8B"><span class="toc-text">2.2.1.从噪声预测到数据预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%8E%E5%8D%95%E6%AD%A5%E6%B1%82%E8%A7%A3%E5%99%A8%E5%88%B0%E5%A4%9A%E6%AD%A5%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="toc-text">2.2.2.从单步求解器到多步求解器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC"><span class="toc-text">2.2.3.动态阈值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-text">3.源码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%AD%A5%E6%AD%A5%E9%95%BF%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.1.多步步长实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%AD%A5%E6%AD%A5%E9%95%BF%E5%AE%9E%E7%8E%B0"><span class="toc-text">3.2.单步步长实现</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/23/AIGC/DPM-Solver/" title="DPM-Solver和DPM-Solver++"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DPM-Solver和DPM-Solver++"></a><div class="content"><a class="title" href="/2025/09/23/AIGC/DPM-Solver/" title="DPM-Solver和DPM-Solver++">DPM-Solver和DPM-Solver++</a><time datetime="2025-09-22T16:00:00.000Z" title="发表于 2025-09-23 00:00:00">2025-09-23</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特殊技巧算法题"/></a><div class="content"><a class="title" href="/2025/12/25/Algo/others/" title="特殊技巧算法题">特殊技巧算法题</a><time datetime="2025-12-24T16:00:00.000Z" title="发表于 2025-12-25 00:00:00">2025-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/16/Algo/greedy/" title="贪心算法题"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贪心算法题"/></a><div class="content"><a class="title" href="/2025/12/16/Algo/greedy/" title="贪心算法题">贪心算法题</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站王树森老师推荐系统公开课"/></a><div class="content"><a class="title" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课">B站王树森老师推荐系统公开课</a><time datetime="2025-12-14T16:00:00.000Z" title="发表于 2025-12-15 00:00:00">2025-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/Algo/sort/" title="排序"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序"/></a><div class="content"><a class="title" href="/2025/11/24/Algo/sort/" title="排序">排序</a><time datetime="2025-11-23T16:00:00.000Z" title="发表于 2025-11-24 00:00:00">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/img2.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

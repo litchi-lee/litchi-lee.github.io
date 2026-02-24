@@ -1,0 +1,540 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MAR的细节 | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一些细节记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAR的细节">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/05/20/AIGC/MAR/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="一些细节记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png">
+<meta property="article:published_time" content="2025-05-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T03:13:12.808Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="AIGC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MAR的细节",
+  "url": "https://litchi-lee.github.io/2025/05/20/AIGC/MAR/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png",
+  "datePublished": "2025-05-19T16:00:00.000Z",
+  "dateModified": "2026-02-24T03:13:12.808Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/05/20/AIGC/MAR/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MAR的细节',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/img2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">MAR的细节</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">MAR的细节</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-05-19T16:00:00.000Z" title="发表于 2025-05-20 00:00:00">2025-05-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-24T03:13:12.808Z" title="更新于 2026-02-24 11:13:12">2026-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><strong>系列文章：</strong></p>
+<ol class="series-items"><li><a href="/2025/05/20/AIGC/MAR/" title="MAR的细节">MAR的细节</a></li></ol>
+<blockquote>
+<p>原论文：<a
+target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/66e226469f20625aaebddbe47f0ca997-Abstract-Conference.html">Autoregressive
+Image Generation without Vector Quantization</a></p>
+<p>源码：<a
+target="_blank" rel="noopener" href="https://github.com/LTH14/mar">https://github.com/LTH14/mar</a></p>
+</blockquote>
+<p>同时参考了<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/711930343">知乎大佬的博客</a>辅助理解。</p>
+<h1 id="背景">1.背景</h1>
+<p>自回归模型是目前自然语言处理中生成模型的基础，这些模型使用输入的前一个词预测序列中下一个词，考虑到语言的离散性，模型的输入和输出都表示在离散空间中，这种流行的做法使得大家普遍认为自回归模型就一定要使用到离散表征（其中在图像生成中通常使用VQ）。因此本工作旨在解决这个问题，即<strong>自回归模型是否一定要与向量量化（VQ）相结合</strong>？</p>
+<p>本文注意到，其实自回归强调的”predicting next tokens based on previous
+ones”跟值是离散还是连续无关，真正重要的其实是得到每个token的概率分布，使用离散值表示能很好使用类别分布（Categories
+Distribution）建模得到，但是这并不代表这就是必要的，如果能找到另一种建模方式，就可以不使用VQ来进行自回归生成。</p>
+<blockquote>
+<p><strong>补充</strong>：为什么要代替VQ呢</p>
+<p>VQ
+Tokenizer训练不稳定，在训练过程中由于使用了<strong>argmin</strong>这种不可导的计算，导致在梯度回传的过程中是直接将量化向量梯度复制给encode向量的，这个梯度不准确，因此往往导致不准确的训练。</p>
+</blockquote>
+<p>本文尝试在连续值域上使用扩散模型来为每个token的概率分布建模，为每个token预测一个向量<span
+class="math inline"><em>z</em></span>，作为去噪网络的条件嵌入，输出下一个token的概率分布<span
+class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span>。不仅如此，本文进一步将AR模型和掩码生成模型结合在一起，提出了掩码自回归模型（MAR）。</p>
+<h1 id="method">2.Method</h1>
+<h2 id="回顾离散tokens的做法">2.1.回顾离散tokens的做法</h2>
+<p>在自回归生成任务中，如果采用一个离散的tokenizer来预测下一个<span
+class="math inline"><em>x</em></span>，那么<span
+class="math inline"><em>x</em></span>将被表示为一个索引 <span
+class="math inline">0 ≤ <em>x</em> &lt; <em>K</em></span>
+用于在词汇表（大小为<span
+class="math inline"><em>K</em></span>）中查找对应的表示。此时自回归模型将生成一个<span
+class="math inline"><em>D</em></span>维的向量<span
+class="math inline"><em>z</em></span> ，之后将通过与<span
+class="math inline"><em>K</em></span>分类矩阵 <span
+class="math inline"><em>W</em> ∈ ℝ<sup><em>K</em> × <em>D</em></sup></span>
+相乘得到属于每个分类的概率 <span
+class="math inline"><em>p</em>(<em>x</em>|<em>z</em>) = <em>s</em><em>o</em><em>f</em><em>t</em><em>m</em><em>a</em><em>x</em>(<em>W</em><em>z</em>)</span>
+，取最大概率的词汇得到 <span class="math inline"><em>x</em></span>
+。</p>
+<p>回顾这个做法，其中有两点很重要：</p>
+<ul>
+<li>需要有一个能衡量预测分布和真实分布之间差异的<strong>损失函数</strong>；</li>
+<li>在推理时有一个能从分布 <span
+class="math inline"><em>x</em> ∼ <em>p</em>(<em>x</em>|<em>z</em>)</span>
+中采样的<strong>采样器</strong>。</li>
+</ul>
+<p>由此可以发现，其实自回归模型不一定要用离散表征（VQ），对概率分布的建模才是最重要的。</p>
+<h2 id="diffusion-loss">2.2.Diffusion Loss</h2>
+<h3 id="loss-function">2.2.1.Loss Function</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/20250521143240.png" width="50%"/></p>
+<p>本文使用了扩散模型来建模每个token的概率分布 <span
+class="math inline"><em>p</em>(<em>x</em>|<em>z</em>)</span>
+，而用自回归模型来生成每个token的条件向量 <span
+class="math inline"><em>z</em></span>（如上图），具体来说本文使用的Diffusion
+Loss可表述为：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathcal{L}(z,x)=\mathbb{E}_{\varepsilon,t}\left[\left\|\varepsilon-\varepsilon_\theta(x_t|t,z)\right\|^2\right].
+\end{split}
+$$</span></p>
+<p>其中需要注意的是，这里的噪声预测模型<span
+class="math inline"><em>ε</em><sub><em>θ</em></sub></span>使用的是一个小型的MLP，所以计算开销不会过大。这里的条件<span
+class="math inline"><em>z</em></span>是用自回归网络 <span
+class="math inline"><em>z</em> = <em>f</em>(⋅)</span>
+生成的，并且由于使用连续表示，这里 <span
+class="math inline"><em>z</em></span>
+的梯度也是可以通过上面的损失函数进行传播的，所以使用Diffusion
+Loss也能同步训练自回归网络 <span
+class="math inline"><em>f</em>(⋅)</span> 。</p>
+<p>在训练时，作者提到了一个小trick，Diffusion Loss中的期望值 <span
+class="math inline">𝔼<sub><em>ε</em>, <em>t</em></sub></span>
+是对时间步<span
+class="math inline"><em>t</em></span>的期望，因此为了训练的稳定，需要在同一个给定的<span
+class="math inline"><em>z</em></span>下对时间步<span
+class="math inline"><em>t</em></span>采样多次，而不需要重新计算<span
+class="math inline"><em>z</em></span>，在实验中设置<span
+class="math inline"><em>t</em></span>地重复采样次数为4。</p>
+<h3 id="采样">2.2.2.采样</h3>
+<p>这里的采样就是扩散模型中的采样过程，即：</p>
+<p><span class="math display">$$
+\begin{split}
+    x_{t-1}=\frac{1}{\sqrt{\alpha_t}}\left(x_t-\frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}}\varepsilon_\theta(x_t|t,z)\right)+\sigma_t\delta.
+\end{split}
+$$</span></p>
+<p>同时，参考openAI的CG（2021，Diffusion Beats
+Gan）中提出的温度控制，这里引入了温度因子<span
+class="math inline"><em>τ</em></span>来控制采样的随机性（多样性）。具体来说，本文采用的方式是对噪声方差<span
+class="math inline"><em>σ</em><sub><em>t</em></sub><em>δ</em></span>乘上<span
+class="math inline"><em>τ</em></span>来控制采样的多样性。</p>
+<h2 id="引入自回归模型">2.3.引入自回归模型</h2>
+<p>对于一个tokens序列<span
+class="math inline">{<em>x</em><sup>1</sup>, <em>x</em><sup>2</sup>, ..., <em>x</em><sup><em>n</em></sup>}</span>（以某种规定的顺序排序），自回归模型的建模可以表示为：</p>
+<p><span class="math display">$$
+\begin{split}
+    p\left(x^1, \ldots, x^n\right)=\prod_{i=1}^n p\left(x^i \mid x^1,
+\ldots, x^{i-1}\right)
+\end{split}
+$$</span></p>
+<p>这里定义的<span
+class="math inline"><em>x</em><sup><em>i</em></sup></span>可以定义在连续空间中，并且其概率分布是用扩散模型来建模的。而条件向量<span
+class="math inline"><em>z</em><sup><em>i</em></sup></span>则是通过一个自回归网络生成的：<span
+class="math inline"><em>z</em><sup><em>i</em></sup> = <em>f</em>(<em>x</em><sup>1</sup>, …, <em>x</em><sup><em>i</em> − 1</sup>)</span>。</p>
+<h2 id="masked-generative-models">2.4.Masked Generative Models</h2>
+<h3 id="mae">2.4.1.MAE</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bi-attention.png" width="50%"/></p>
+<p>目前大多数的自回归生成采用<strong>因果注意力</strong>（Casual
+Attention）作为自回归架构（即用前面的预测后面的），但是这种单向的约束其实并不完全符合自回归的定义（即用已知tokens预测未知tokens），因此作者认为应该选择<strong>双向注意力</strong>（Bidirectional
+Attention）作为自回归架构。进一步说，作者选择了<strong>MAE</strong>（Masked
+Autoencoder）实现双向注意力，基于未Masked的tokens预测一批masked的tokens。</p>
+<h3 id="随机排序">2.4.2.随机排序</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/MAR_random_order.png" width="50%"/></p>
+<p>本文使用<strong>随机排序</strong>定义token序列，这其实也符合MAE的思想，每个样本对应的tokens序列都是随机的。但在解码阶段，MAE添加了额外的positional
+embedding来指定要预测的token。</p>
+<p>并且在掩码生成建模中，模型会基于已知的tokens生成一系列tokens而不是仅仅预测一个token，即
+<span
+class="math inline"><em>p</em>({<em>x</em><sup><em>i</em></sup>, <em>x</em><sup><em>i</em> + 1</sup>..., <em>x</em><sup><em>j</em></sup>} ∣ <em>x</em><sup>1</sup>, ..., <em>x</em><sup><em>i</em> − 1</sup>)</span>
+，其中 <span
+class="math inline"><em>i</em> ≤ <em>j</em></span>。相当于每步预测时同步预测好几个tokens，这样可以加速生成过程，作者称其为”next
+set-of-tokens prediction”。</p>
+<h1 id="实现细节">3.实现细节</h1>
+<h2 id="diffusion-loss-1">3.1.Diffusion Loss</h2>
+<p>作者使用的扩散模型基于iDDPM，使用余弦噪声调度方案，并可以引入<span
+class="math inline">ℒ<sub><em>v</em><em>l</em><em>b</em></sub></span>，训练过程使用CFG（Classifier-free
+Guidance）进行训练。噪声预测网络使用多层ResBlock进行构建，条件向量<span
+class="math inline"><em>z</em></span>和<span
+class="math inline"><em>t</em></span>是通过AdaLN嵌入（具体可参考DiT）来进行条件控制的。</p>
+<h2 id="ar-and-mar">3.2.AR and MAR</h2>
+<p>作者使用的tokenizer来自于LDM，包括VQ-16和KL-16，Transformer的架构参考ViT，因果注意力的实现来自于GPT。</p>
+<h2 id="总结">3.3.总结</h2>
+<p>具体来说，MAR的实现细节可分为两个阶段：</p>
+<h3 id="训练阶段">3.3.1.训练阶段</h3>
+<ul>
+<li><strong>From pixel to
+latent</strong>：首先对于输入图像，其实需要先过一层预训练的VAE从像素空间（pixel）转换为隐空间（latent）；</li>
+<li><strong>Patchify</strong>：接着和ViT类似将其划分为patches，从<span
+class="math inline">ℝ<sup><em>b</em>, <em>c</em>, <em>h</em>, <em>w</em></sup></span>reshape为<span
+class="math inline">ℝ<sup><em>b</em>, <em>l</em>, <em>d</em></sup></span>，这就是定义在<strong>连续空间上的image
+tokens</strong>；</li>
+<li><strong>Masking</strong>：得到tokens后，需要mask一部分tokens进行训练，这里作者定义的masking
+ratio范围为 <span
+class="math inline">[0.7, 1]</span>。需要注意的是，在同一个batch中的masking
+ratio是相同的，但是采样的masked tokens是不同的；</li>
+<li><strong>MAE</strong>：在编码解码之前，需要为tokens加上<strong>位置编码</strong>，masked
+tokens表示为<code>[m]</code>，同时为了避免unmasked的tokens序列过短，作者在tokens序列开头扩充了64个<code>[cls]</code>tokens，并且这个类别tokens也可以适应CFG的训练；</li>
+<li><strong>Diffusion</strong>：根据输入的gt latent <span
+class="math inline"><em>x</em><sub>0</sub></span> 和MAE解码出来的条件
+<span class="math inline"><em>z</em></span>
+可以训练扩散模型，具体来说采样一个时间步<span
+class="math inline"><em>t</em></span>和一个噪音<span
+class="math inline"><em>ε</em></span>，可以得到<span
+class="math inline"><em>x</em><sub><em>t</em></sub></span>，通过噪声预测网络得到预测噪声<span
+class="math inline"><em>ε</em><sub><em>θ</em></sub></span>，通过计算<span
+class="math inline"><em>ε</em></span>和<span
+class="math inline"><em>ε</em><sub><em>θ</em></sub></span>的MSE损失进行训练。</li>
+</ul>
+<h3 id="推理阶段">3.3.2.推理阶段</h3>
+<ul>
+<li><strong>Mask</strong>：在推理阶段，作者设置了<strong>余弦衰减的mask
+ratio调度曲线</strong>（从1.0到0），并设置64步采样。i.e.假设指定的随机token顺序为<span
+class="math inline">[10, 18, 23, 8, 39, 28, 30, 60...]</span>，那么生成的顺序可以是第一步根据<span
+class="math inline">[[<em>c</em><em>l</em><em>s</em>], ..., [<em>c</em><em>l</em><em>s</em>]]</span>生成<span
+class="math inline">[10, 18, 23]</span>，第二步根据<span
+class="math inline">[[<em>c</em><em>l</em><em>s</em>], ..., [<em>c</em><em>l</em><em>s</em>], 10, 18, 23]</span>生成<span
+class="math inline">[8, 39, 28, 30]</span>，之后mask放开得越来越多，生成的token也越来越多；</li>
+<li><strong>CFG</strong>：由于在训练时使用Classifier-free
+Guidance进行训练，因此MAR可以实现无条件生成和条件生成。在条件生成时，给定条件类别label，会生成<strong>class
+embedding</strong>，同时与<strong>fake
+latent</strong>进行拼接，这是因为CFG在进行条件生成时需要同时预测条件噪声与无条件噪声（<span
+class="math inline">∇<sub><em>x</em><sub><em>t</em></sub></sub>log <em>P</em>(<em>x</em><sub><em>t</em></sub>|<em>y</em>) = <em>λ</em>∇<sub><em>x</em><sub><em>t</em></sub></sub>log <em>P</em>(<em>x</em><sub><em>t</em></sub>|<em>y</em>) + (1 − <em>λ</em>)∇<sub><em>x</em><sub><em>t</em></sub></sub>log <em>P</em>(<em>x</em><sub><em>t</em></sub>)</span>），然后作为64个<code>[cls]</code>喂给MAE
+Encoder；</li>
+<li><strong>Diffusion
+Sample</strong>：每步MAE生成后，根据对应要生成tokens的条件信息<span
+class="math inline"><em>z</em></span>，使用Diffusion的逆向过程进行采样即可；</li>
+<li><strong>From latent to
+pixel</strong>：生成所有tokens后，此时其维度为<span
+class="math inline">ℝ<sup><em>b</em> × <em>l</em> × <em>d</em></sup></span>，首先将其unpatchify回图像维度，然后通过预训练VAE的Decoder回到原Pixel空间。</li>
+</ul>
+<h1 id="源码">4.源码</h1>
+<p>mar的模型定义在<code>models\mar.py</code>中，从<code>forward</code>函数中入手：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MAR</span>(nn.Module):</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, imgs, labels</span>):</span><br><span class="line">        <span class="comment"># class embed</span></span><br><span class="line">        class_embedding = <span class="variable language_">self</span>.class_emb(labels)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># patchify and mask (drop) tokens</span></span><br><span class="line">        x = <span class="variable language_">self</span>.patchify(imgs)</span><br><span class="line">        gt_latents = x.clone().detach()</span><br><span class="line">        orders = <span class="variable language_">self</span>.sample_orders(bsz=x.size(<span class="number">0</span>))</span><br><span class="line">        mask = <span class="variable language_">self</span>.random_masking(x, orders)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># mae encoder</span></span><br><span class="line">        x = <span class="variable language_">self</span>.forward_mae_encoder(x, mask, class_embedding)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># mae decoder</span></span><br><span class="line">        z = <span class="variable language_">self</span>.forward_mae_decoder(x, mask)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># diffloss</span></span><br><span class="line">        loss = <span class="variable language_">self</span>.forward_loss(z=z, target=gt_latents, mask=mask)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> loss</span><br></pre></td></tr></table></figure>
+<h2 id="patchify-mask">4.1.Patchify &amp; Mask</h2>
+<p>第一步对类别的embedding，源码直接使用<code>nn.embedding</code>来处理，即<code>self.class_emb = nn.Embedding(class_num, encoder_embed_dim)</code>。第二步<code>patchify</code>的做法很直观，就是和ViT一样将其划分为patches：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">patchify</span>(<span class="params">self, x</span>):</span><br><span class="line">    bsz, c, h, w = x.shape</span><br><span class="line">    p = <span class="variable language_">self</span>.patch_size</span><br><span class="line">    h_, w_ = h // p, w // p</span><br><span class="line"></span><br><span class="line">    x = x.reshape(bsz, c, h_, p, w_, p)</span><br><span class="line">    x = torch.einsum(<span class="string">&#x27;nchpwq-&gt;nhwcpq&#x27;</span>, x)</span><br><span class="line">    x = x.reshape(bsz, h_ * w_, c * p ** <span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> x  <span class="comment"># [n, l, d]</span></span><br></pre></td></tr></table></figure>
+<p>接着后续的mask部分分两步，首先使用<code>sample_orders()</code>打乱顺序，然后使用<code>random_masking()</code>来生成token
+mask，这里的mask ratio是通过截断正态分布生成的，范围在<span
+class="math inline">[0.75, 1]</span>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sample_orders</span>(<span class="params">self, bsz</span>):</span><br><span class="line">    <span class="comment"># generate a batch of random generation orders</span></span><br><span class="line">    orders = []</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(bsz):</span><br><span class="line">        order = np.array(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="variable language_">self</span>.seq_len)))</span><br><span class="line">        np.random.shuffle(order)</span><br><span class="line">        orders.append(order)</span><br><span class="line">    orders = torch.Tensor(np.array(orders)).cuda().long()</span><br><span class="line">    <span class="keyword">return</span> orders</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">random_masking</span>(<span class="params">self, x, orders</span>):</span><br><span class="line">    <span class="comment"># generate token mask</span></span><br><span class="line">    bsz, seq_len, embed_dim = x.shape</span><br><span class="line">    mask_rate = <span class="variable language_">self</span>.mask_ratio_generator.rvs(<span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">    num_masked_tokens = <span class="built_in">int</span>(np.ceil(seq_len * mask_rate))</span><br><span class="line">    mask = torch.zeros(bsz, seq_len, device=x.device)</span><br><span class="line">    mask = torch.scatter(mask, dim=-<span class="number">1</span>, index=orders[:, :num_masked_tokens],</span><br><span class="line">                         src=torch.ones(bsz, seq_len, device=x.device))</span><br><span class="line">    <span class="keyword">return</span> mask</span><br></pre></td></tr></table></figure>
+<h2 id="mae-encode-decode">4.2.MAE Encode &amp; Decode</h2>
+<p>首先是Encoder部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">forward_mae_encoder</span>(<span class="params">self, x, mask, class_embedding</span>):</span><br><span class="line">    x = <span class="variable language_">self</span>.z_proj(x)</span><br><span class="line">    bsz, seq_len, embed_dim = x.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 提前预留出64个[cls]tokens的位置，并且也为mask向量预留出同样的位置</span></span><br><span class="line">    x = torch.cat([torch.zeros(bsz, <span class="variable language_">self</span>.buffer_size, embed_dim, device=x.device), x], dim=<span class="number">1</span>)</span><br><span class="line">    mask_with_buffer = torch.cat([torch.zeros(x.size(<span class="number">0</span>), <span class="variable language_">self</span>.buffer_size, device=x.device), mask], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># CFG训练 此处的fake_latent表示无条件生成</span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.training:</span><br><span class="line">        drop_latent_mask = torch.rand(bsz) &lt; <span class="variable language_">self</span>.label_drop_prob</span><br><span class="line">        drop_latent_mask = drop_latent_mask.unsqueeze(-<span class="number">1</span>).cuda().to(x.dtype)</span><br><span class="line">        class_embedding = drop_latent_mask * <span class="variable language_">self</span>.fake_latent + (<span class="number">1</span> - drop_latent_mask) * class_embedding</span><br><span class="line"></span><br><span class="line">    x[:, :<span class="variable language_">self</span>.buffer_size] = class_embedding.unsqueeze(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 引入可学习的位置编码</span></span><br><span class="line">    x = x + <span class="variable language_">self</span>.encoder_pos_embed_learned</span><br><span class="line">    x = <span class="variable language_">self</span>.z_proj_ln(x)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 只保留unmask的部分</span></span><br><span class="line">    x = x[(<span class="number">1</span>-mask_with_buffer).nonzero(as_tuple=<span class="literal">True</span>)].reshape(bsz, -<span class="number">1</span>, embed_dim)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># transformer encoder</span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.grad_checkpointing <span class="keyword">and</span> <span class="keyword">not</span> torch.jit.is_scripting():</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.encoder_blocks:</span><br><span class="line">            x = checkpoint(block, x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.encoder_blocks:</span><br><span class="line">            x = block(x)</span><br><span class="line">    x = <span class="variable language_">self</span>.encoder_norm(x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<p>接着是Decoder部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">forward_mae_decoder</span>(<span class="params">self, x, mask</span>):</span><br><span class="line">    x = <span class="variable language_">self</span>.decoder_embed(x)</span><br><span class="line">    mask_with_buffer = torch.cat([torch.zeros(x.size(<span class="number">0</span>), <span class="variable language_">self</span>.buffer_size, device=x.device), mask], dim=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 和Encode一样填充前面的[cls]</span></span><br><span class="line">    mask_tokens = <span class="variable language_">self</span>.mask_token.repeat(mask_with_buffer.shape[<span class="number">0</span>], mask_with_buffer.shape[<span class="number">1</span>], <span class="number">1</span>).to(x.dtype)</span><br><span class="line">    x_after_pad = mask_tokens.clone()</span><br><span class="line">    x_after_pad[(<span class="number">1</span> - mask_with_buffer).nonzero(as_tuple=<span class="literal">True</span>)] = x.reshape(x.shape[<span class="number">0</span>] * x.shape[<span class="number">1</span>], x.shape[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># decoder position embedding</span></span><br><span class="line">    x = x_after_pad + <span class="variable language_">self</span>.decoder_pos_embed_learned</span><br><span class="line"></span><br><span class="line">    <span class="comment"># apply Transformer blocks</span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable language_">self</span>.grad_checkpointing <span class="keyword">and</span> <span class="keyword">not</span> torch.jit.is_scripting():</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.decoder_blocks:</span><br><span class="line">            x = checkpoint(block, x)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.decoder_blocks:</span><br><span class="line">            x = block(x)</span><br><span class="line">    x = <span class="variable language_">self</span>.decoder_norm(x)</span><br><span class="line"></span><br><span class="line">    x = x[:, <span class="variable language_">self</span>.buffer_size:]</span><br><span class="line">    x = x + <span class="variable language_">self</span>.diffusion_pos_embed_learned</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h2 id="diffusion-loss-2">4.3.Diffusion Loss</h2>
+<p>关于Diffusion Loss的计算，这里使用的是iDDPM的计算，即需要加上<span
+class="math inline">ℒ<sub><em>v</em><em>l</em><em>b</em></sub></span>，并使用预测方差，具体的diffusion部分可参考<a
+href="https://litchi-lee.github.io/2025/05/08/AIGC/iDDPM/">iDDPM</a>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MAR</span>(nn.Module):</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward_loss</span>(<span class="params">self, z, target, mask</span>):</span><br><span class="line">        bsz, seq_len, _ = target.shape</span><br><span class="line">        target = target.reshape(bsz * seq_len, -<span class="number">1</span>).repeat(<span class="variable language_">self</span>.diffusion_batch_mul, <span class="number">1</span>)</span><br><span class="line">        z = z.reshape(bsz*seq_len, -<span class="number">1</span>).repeat(<span class="variable language_">self</span>.diffusion_batch_mul, <span class="number">1</span>)</span><br><span class="line">        mask = mask.reshape(bsz*seq_len).repeat(<span class="variable language_">self</span>.diffusion_batch_mul)</span><br><span class="line">        loss = <span class="variable language_">self</span>.diffloss(z=z, target=target, mask=mask)</span><br><span class="line">        <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DiffLoss</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, target, z, mask=<span class="literal">None</span></span>):</span><br><span class="line">        t = torch.randint(<span class="number">0</span>, <span class="variable language_">self</span>.train_diffusion.num_timesteps, (target.shape[<span class="number">0</span>],), device=target.device)</span><br><span class="line">        model_kwargs = <span class="built_in">dict</span>(c=z)</span><br><span class="line">        loss_dict = <span class="variable language_">self</span>.train_diffusion.training_losses(<span class="variable language_">self</span>.net, target, t, model_kwargs)</span><br><span class="line">        loss = loss_dict[<span class="string">&quot;loss&quot;</span>]</span><br><span class="line">        <span class="keyword">if</span> mask <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            loss = (loss * mask).<span class="built_in">sum</span>() / mask.<span class="built_in">sum</span>()</span><br><span class="line">        <span class="keyword">return</span> loss.mean()</span><br></pre></td></tr></table></figure>
+<p>这里不太一样的是噪声预测网络的实现，本文使用的是一个简单的MLP，条件则是通过AdaLN进行控制的（类似于<a
+href="https://litchi-lee.github.io/2025/05/08/AIGC/DIT/">DiT</a>）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleMLPAdaLN</span>(nn.Module):</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, t, c</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Apply the model to an input batch.</span></span><br><span class="line"><span class="string">        :param x: an [N x C] Tensor of inputs.</span></span><br><span class="line"><span class="string">        :param t: a 1-D batch of timesteps.</span></span><br><span class="line"><span class="string">        :param c: conditioning from AR transformer.</span></span><br><span class="line"><span class="string">        :return: an [N x C] Tensor of outputs.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        x = <span class="variable language_">self</span>.input_proj(x)</span><br><span class="line">        t = <span class="variable language_">self</span>.time_embed(t)</span><br><span class="line">        c = <span class="variable language_">self</span>.cond_embed(c)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将时间步信息和条件信息融合</span></span><br><span class="line">        y = t + c</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable language_">self</span>.grad_checkpointing <span class="keyword">and</span> <span class="keyword">not</span> torch.jit.is_scripting():</span><br><span class="line">            <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.res_blocks:</span><br><span class="line">                x = checkpoint(block, x, y)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> block <span class="keyword">in</span> <span class="variable language_">self</span>.res_blocks:</span><br><span class="line">                x = block(x, y)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.final_layer(x, y)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ResBlock</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        channels</span></span><br><span class="line"><span class="params">    </span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        <span class="variable language_">self</span>.channels = channels</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.in_ln = nn.LayerNorm(channels, eps=<span class="number">1e-6</span>)</span><br><span class="line">        <span class="variable language_">self</span>.mlp = nn.Sequential(</span><br><span class="line">            nn.Linear(channels, channels, bias=<span class="literal">True</span>),</span><br><span class="line">            nn.SiLU(),</span><br><span class="line">            nn.Linear(channels, channels, bias=<span class="literal">True</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.adaLN_modulation = nn.Sequential(</span><br><span class="line">            nn.SiLU(),</span><br><span class="line">            nn.Linear(channels, <span class="number">3</span> * channels, bias=<span class="literal">True</span>)</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, y</span>):</span><br><span class="line">        shift_mlp, scale_mlp, gate_mlp = <span class="variable language_">self</span>.adaLN_modulation(y).chunk(<span class="number">3</span>, dim=-<span class="number">1</span>)</span><br><span class="line">        h = modulate(<span class="variable language_">self</span>.in_ln(x), shift_mlp, scale_mlp)</span><br><span class="line">        h = <span class="variable language_">self</span>.mlp(h)</span><br><span class="line">        <span class="keyword">return</span> x + gate_mlp * h</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/05/20/AIGC/MAR/">https://litchi-lee.github.io/2025/05/20/AIGC/MAR/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AIGC/">AIGC</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/05/10/AI/tricks/" title="随手记录一些常用知识点"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">随手记录一些常用知识点</div></div><div class="info-2"><div class="info-item-1">随便记录一下在模型训练中的小tricks，或是一些常用的知识点</div></div></div></a><a class="pagination-related" href="/2025/06/03/course/AML/" title="NJU2025春季学期-高级机器学习笔记"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">NJU2025春季学期-高级机器学习笔记</div></div><div class="info-2"><div class="info-item-1">关于AML的部分复习笔记整理</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/04/17/AIGC/DDIM/" title="DDIM总结"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-17</div><div class="info-item-2">DDIM总结</div></div><div class="info-2"><div class="info-item-1">一些关于DDIM的总结，扒一下源码</div></div></div></a><a class="pagination-related" href="/2025/04/15/AIGC/DDPM/" title="DDPM总结"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-15</div><div class="info-item-2">DDPM总结</div></div><div class="info-2"><div class="info-item-1">主要扒一下DDPM的关键源码</div></div></div></a><a class="pagination-related" href="/2025/09/23/AIGC/DPM-Solver/" title="DPM-Solver和DPM-Solver++"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-09-23</div><div class="info-item-2">DPM-Solver和DPM-Solver++</div></div><div class="info-2"><div class="info-item-1">DPM-Solver和DPM-Solver++的介绍和如何应用</div></div></div></a><a class="pagination-related" href="/2025/05/08/AIGC/DIT/" title="DiT的细节"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-08</div><div class="info-item-2">DiT的细节</div></div><div class="info-2"><div class="info-item-1">一些细节记录</div></div></div></a><a class="pagination-related" href="/2025/04/27/AIGC/LDM/" title="LDM的细节"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-27</div><div class="info-item-2">LDM的细节</div></div><div class="info-2"><div class="info-item-1">一些细节记录</div></div></div></a><a class="pagination-related" href="/2025/05/08/AIGC/iDDPM/" title="iDDPM总结"><img class="cover" src="/img/bg1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-08</div><div class="info-item-2">iDDPM总结</div></div><div class="info-2"><div class="info-item-1">一些关于iDDPM的记录，扒一下源码</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">1.背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#method"><span class="toc-text">2.Method</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E9%A1%BE%E7%A6%BB%E6%95%A3tokens%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-text">2.1.回顾离散tokens的做法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diffusion-loss"><span class="toc-text">2.2.Diffusion Loss</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#loss-function"><span class="toc-text">2.2.1.Loss Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7"><span class="toc-text">2.2.2.采样</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E8%87%AA%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B"><span class="toc-text">2.3.引入自回归模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#masked-generative-models"><span class="toc-text">2.4.Masked Generative Models</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mae"><span class="toc-text">2.4.1.MAE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%92%E5%BA%8F"><span class="toc-text">2.4.2.随机排序</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="toc-text">3.实现细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#diffusion-loss-1"><span class="toc-text">3.1.Diffusion Loss</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ar-and-mar"><span class="toc-text">3.2.AR and MAR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">3.3.总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E9%98%B6%E6%AE%B5"><span class="toc-text">3.3.1.训练阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E9%98%B6%E6%AE%B5"><span class="toc-text">3.3.2.推理阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81"><span class="toc-text">4.源码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#patchify-mask"><span class="toc-text">4.1.Patchify &amp; Mask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mae-encode-decode"><span class="toc-text">4.2.MAE Encode &amp; Decode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diffusion-loss-2"><span class="toc-text">4.3.Diffusion Loss</span></a></li></ol></li></ol></div></div><div class="card-widget card-post-series"><div class="item-headline"><i class="fa-solid fa-layer-group"></i><span>系列文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/20/AIGC/MAR/" title="MAR的细节"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MAR的细节"></a><div class="content"><a class="title" href="/2025/05/20/AIGC/MAR/" title="MAR的细节">MAR的细节</a><time datetime="2025-05-19T16:00:00.000Z" title="发表于 2025-05-20 00:00:00">2025-05-20</time></div></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特殊技巧算法题"/></a><div class="content"><a class="title" href="/2025/12/25/Algo/others/" title="特殊技巧算法题">特殊技巧算法题</a><time datetime="2025-12-24T16:00:00.000Z" title="发表于 2025-12-25 00:00:00">2025-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/16/Algo/greedy/" title="贪心算法题"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贪心算法题"/></a><div class="content"><a class="title" href="/2025/12/16/Algo/greedy/" title="贪心算法题">贪心算法题</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站王树森老师推荐系统公开课"/></a><div class="content"><a class="title" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课">B站王树森老师推荐系统公开课</a><time datetime="2025-12-14T16:00:00.000Z" title="发表于 2025-12-15 00:00:00">2025-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/Algo/sort/" title="排序"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序"/></a><div class="content"><a class="title" href="/2025/11/24/Algo/sort/" title="排序">排序</a><time datetime="2025-11-23T16:00:00.000Z" title="发表于 2025-11-24 00:00:00">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/img2.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

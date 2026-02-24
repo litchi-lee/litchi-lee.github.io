@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Davinci学习之初级学习笔记 | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="包括达芬奇入门、剪辑、快编、变速等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Davinci学习之初级学习笔记">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="包括达芬奇入门、剪辑、快编、变速等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png">
+<meta property="article:published_time" content="2025-04-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-24T03:13:12.813Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="Davinci">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Davinci学习之初级学习笔记",
+  "url": "https://litchi-lee.github.io/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png",
+  "datePublished": "2025-04-15T16:00:00.000Z",
+  "dateModified": "2026-02-24T03:13:12.813Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Davinci学习之初级学习笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top0.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Davinci学习之初级学习笔记</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Davinci学习之初级学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-15T16:00:00.000Z" title="发表于 2025-04-16 00:00:00">2025-04-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-24T03:13:12.813Z" title="更新于 2026-02-24 11:13:12">2026-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%91%84%E5%BD%B1/">摄影</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="davinci入门学习">Davinci入门学习</h1>
+<p>主要参考影视飓风的达芬奇教程，这里是leo的学习笔记，我的主要需求其实是调色，其他的部分应该只是大致浏览一下。</p>
+<h2 id="入门简介">入门简介</h2>
+<p>创作视频的一般流程：</p>
+<ul>
+<li>导入素材进行分类：<code>媒体</code> 面板中进行</li>
+<li>进行视频的粗剪、然后进行精细剪辑：<code>快编</code> 及
+<code>剪辑</code> 面板中进行</li>
+<li>效果制作、调色、音频调整：分别对应
+<code>Fusion</code>、<code>调色</code>、<code>Fairlight</code> 面板</li>
+<li>导出视频：<code>交付</code> 面板</li>
+</ul>
+<h3 id="媒体面板">媒体面板</h3>
+<p>通常流程是我们通过<strong>媒体浏览器</strong>找到素材所在文件夹，在<strong>监视器</strong>中回看，选择需要的素材拖拽到<strong>素材池</strong>中，等待剪辑。</p>
+<p>达芬奇素材池进行项目管理有一个很大的弊端：一旦导入素材，就无法更改项目的帧率，容易造成后期视频的跳帧或卡顿（Davinci
+17后可以更改了）。</p>
+<blockquote>
+<p>解决方法：需要在前期导入素材之前，进入 文件-项目设置-设置合适的帧率
+配置项目</p>
+</blockquote>
+<h3 id="快编和剪辑面板">快编和剪辑面板</h3>
+<p>在 <code>剪辑</code> 面板中进行剪辑的一般流程：</p>
+<ul>
+<li>媒体池进行筛选</li>
+<li>在素材监视器中使用 <code>I</code> 键和 <code>O</code>
+键打下出入点，选出有用的素材拖入时间线进行组装</li>
+<li>通过特效库面板选择对应的音频或视频效果添加转场</li>
+</ul>
+<h3 id="fusion调色fairlight面板">Fusion、调色、Fairlight面板</h3>
+<p>不推荐使用 <code>Fusion</code>
+制作复杂的效果及动画，节点式工作逻辑复杂。<code>调色</code>
+面板很强大（这其实也是我的主要需求），<code>Fairlight</code>
+面板则相当于音频的调色面板。</p>
+<h3 id="交付面板">交付面板</h3>
+<p>通常传播互联网选择 <code>mp4</code> 封装，<code>h264</code>
+编码，分辨率和帧率则根据需求调整。之后添加到渲染序列进行渲染即可。</p>
+<h2 id="剪辑">剪辑</h2>
+<p>一些Tips：</p>
+<ul>
+<li>建议在 <code>媒体</code>
+面板中一次性将所有素材放入素材池，然后再进行分类，这样剪辑时不用因为缺少素材又重新添加。</li>
+<li><code>I</code> 键和 <code>O</code>
+键来打下视频的出入点，可以单独点击画面或音频拖入画面或音频轨道。</li>
+<li>使用 <code>alt</code>+鼠标滚轮 来进行时间线的缩放</li>
+</ul>
+<h3 id="更多工具栏">更多工具栏</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">工具</th>
+<th style="text-align: center;">快捷键</th>
+<th style="text-align: center;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">鼠标模式</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">快速编辑</td>
+</tr>
+<tr>
+<td style="text-align: center;">修建编辑模式</td>
+<td style="text-align: center;"><code>T</code></td>
+<td style="text-align: center;">波纹删除（适合精剪）</td>
+</tr>
+<tr>
+<td style="text-align: center;">动态修剪模式</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">不经常用</td>
+</tr>
+<tr>
+<td style="text-align: center;">剃刀工具</td>
+<td style="text-align: center;"><code>B</code></td>
+<td style="text-align: center;">素材切刀</td>
+</tr>
+<tr>
+<td style="text-align: center;">素材导入方式</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">分为插入、覆盖以及替换</td>
+</tr>
+</tbody>
+</table>
+<h2 id="添加效果与关键帧">添加效果与关键帧</h2>
+<ul>
+<li>添加转场：打开特效库，拖拽一个转场效果到素材拼接处，可以在检查器中精细调节转场效果</li>
+<li>片段调整：点击一个素材片段，打开检查器，进行缩放、位置、变速等，按住
+<code>alt</code> 再进行调整能更精细地控制</li>
+<li>添加关键帧：打开检查器，起始帧选中需要变换的参数右侧红色菱形，接着选中结束帧改变参数即可自动加入关键帧。可以打开非线性变换选项，这样比线性的参数变化更有质感（缓动效果）</li>
+<li>批处理：只需要 <code>ctrl+c</code>
+复制某个已处理好的片段，然后选中需要批处理的其他片段进行粘贴即可</li>
+</ul>
+<blockquote>
+<p>插件推荐：</p>
+<p><a
+target="_blank" rel="noopener" href="https://www.maxon.net/en/red-giant">红巨星宇宙</a>：很多效果和滤镜预设，一年订阅在1400元</p>
+<p><a
+target="_blank" rel="noopener" href="https://www.filmconvert.com/">FilmConvert</a>：调色插件，有很多相机预设</p>
+</blockquote>
+<h2 id="快编界面">快编界面</h2>
+<h3 id="预备知识之代理文件的生成">预备知识之代理文件的生成</h3>
+<p>媒体优化：减少电脑负荷</p>
+<p><strong>方案一</strong>（适用于比较简单的剪辑）：播放–代理模式–选择合适的分辨率</p>
+<p><strong>方案二</strong>（适用于复杂的剪辑）：媒体池选中素材，右键生成优化媒体文件</p>
+<p>设置在 文件–项目设置–主设置–优化的媒体和渲染缓存</p>
+<blockquote>
+<p>常用设置：4K视频 选择 分辨率–二分之一 编码–DNXHR SQ</p>
+</blockquote>
+<h3
+id="预备知识之智能媒体夹及双时间线剪辑">预备知识之智能媒体夹及双时间线剪辑</h3>
+<p>Aroll 主要内容 Broll 辅助时间线</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/">https://litchi-lee.github.io/2025/04/16/photograph/Davinci/%E5%88%9D%E7%BA%A7%E6%95%99%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Davinci/">Davinci</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/04/15/AIGC/DDPM/" title="DDPM总结"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">DDPM总结</div></div><div class="info-2"><div class="info-item-1">主要扒一下DDPM的关键源码</div></div></div></a><a class="pagination-related" href="/2025/04/16/photograph/Lightroom/%E4%B8%80%E4%BA%9B%E4%B8%AA%E4%BA%BA%E8%B0%83%E8%89%B2%E6%80%9D%E8%B7%AF/" title="调色不重要？调色很重要"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">调色不重要？调色很重要</div></div><div class="info-2"><div class="info-item-1">一些个人调色思路总结（待更新！）</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#davinci%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0"><span class="toc-text">Davinci入门学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A5%E9%97%A8%E7%AE%80%E4%BB%8B"><span class="toc-text">入门简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E9%9D%A2%E6%9D%BF"><span class="toc-text">媒体面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E7%BC%96%E5%92%8C%E5%89%AA%E8%BE%91%E9%9D%A2%E6%9D%BF"><span class="toc-text">快编和剪辑面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fusion%E8%B0%83%E8%89%B2fairlight%E9%9D%A2%E6%9D%BF"><span class="toc-text">Fusion、调色、Fairlight面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BB%98%E9%9D%A2%E6%9D%BF"><span class="toc-text">交付面板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%AA%E8%BE%91"><span class="toc-text">剪辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E5%B7%A5%E5%85%B7%E6%A0%8F"><span class="toc-text">更多工具栏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%95%88%E6%9E%9C%E4%B8%8E%E5%85%B3%E9%94%AE%E5%B8%A7"><span class="toc-text">添加效果与关键帧</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E7%BC%96%E7%95%8C%E9%9D%A2"><span class="toc-text">快编界面</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%E4%B9%8B%E4%BB%A3%E7%90%86%E6%96%87%E4%BB%B6%E7%9A%84%E7%94%9F%E6%88%90"><span class="toc-text">预备知识之代理文件的生成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%E4%B9%8B%E6%99%BA%E8%83%BD%E5%AA%92%E4%BD%93%E5%A4%B9%E5%8F%8A%E5%8F%8C%E6%97%B6%E9%97%B4%E7%BA%BF%E5%89%AA%E8%BE%91"><span class="toc-text">预备知识之智能媒体夹及双时间线剪辑</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/25/Algo/others/" title="特殊技巧算法题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="特殊技巧算法题"/></a><div class="content"><a class="title" href="/2025/12/25/Algo/others/" title="特殊技巧算法题">特殊技巧算法题</a><time datetime="2025-12-24T16:00:00.000Z" title="发表于 2025-12-25 00:00:00">2025-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/16/Algo/greedy/" title="贪心算法题"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="贪心算法题"/></a><div class="content"><a class="title" href="/2025/12/16/Algo/greedy/" title="贪心算法题">贪心算法题</a><time datetime="2025-12-15T16:00:00.000Z" title="发表于 2025-12-16 00:00:00">2025-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站王树森老师推荐系统公开课"/></a><div class="content"><a class="title" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课">B站王树森老师推荐系统公开课</a><time datetime="2025-12-14T16:00:00.000Z" title="发表于 2025-12-15 00:00:00">2025-12-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/11/24/Algo/sort/" title="排序"><img src="/img/bg1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="排序"/></a><div class="content"><a class="title" href="/2025/11/24/Algo/sort/" title="排序">排序</a><time datetime="2025-11-23T16:00:00.000Z" title="发表于 2025-11-24 00:00:00">2025-11-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/top0.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
