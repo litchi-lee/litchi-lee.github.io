@@ -1,0 +1,780 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>关于LLM后训练的一些学习记录 | Leo的博客</title><meta name="author" content="Leo Sinclair"><meta name="copyright" content="Leo Sinclair"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="顺手记录一些关于LLM后训练的知识点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于LLM后训练的一些学习记录">
+<meta property="og:url" content="https://litchi-lee.github.io/2025/08/22/AI/LLM_RL/index.html">
+<meta property="og:site_name" content="Leo的博客">
+<meta property="og:description" content="顺手记录一些关于LLM后训练的知识点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png">
+<meta property="article:published_time" content="2025-08-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-21T07:18:24.577Z">
+<meta property="article:author" content="Leo Sinclair">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "关于LLM后训练的一些学习记录",
+  "url": "https://litchi-lee.github.io/2025/08/22/AI/LLM_RL/",
+  "image": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png",
+  "datePublished": "2025-08-21T16:00:00.000Z",
+  "dateModified": "2026-05-21T07:18:24.577Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Leo Sinclair",
+      "url": "https://litchi-lee.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://litchi-lee.github.io/2025/08/22/AI/LLM_RL/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Leo Sinclair","link":"链接: ","source":"来源: Leo的博客","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '关于LLM后训练的一些学习记录',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(img/bg0.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/img3.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/logo0.jpg" alt="Logo"><span class="site-name">Leo的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">关于LLM后训练的一些学习记录</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/galleries/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 听歌日志</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">关于LLM后训练的一些学习记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-21T16:00:00.000Z" title="发表于 2025-08-22 00:00:00">2025-08-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-05-21T07:18:24.577Z" title="更新于 2026-05-21 15:18:24">2026-05-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>参考博客：</p>
+<p><a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1984387073625593089">关于PPO，DPO和GRPO</a>
+<a
+target="_blank" rel="noopener" href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-reasoning-llms?utm_campaign=post&amp;utm_medium=web">A
+Visual Guide to Reasoning LLMs</a></p>
+<h1 id="rlhfppo">1. RLHF（PPO）</h1>
+<p>具体可参考之前的博客：<a
+href="https://litchi-lee.github.io/2025/08/22/AI/RLHF/">RLHF（PPO）</a></p>
+<p>RLHF是一个典型的三阶段流程：</p>
+<ol type="1">
+<li><strong>监督微调（SFT）</strong>：用人类标注的高质量数据做监督微调，得到一个基础模型；</li>
+<li><strong>奖励模型训练</strong>：人类对模型输出打分，用Bradley-Terry模型来拟合偏好：</li>
+</ol>
+<p><span class="math display">$$
+\begin{split}
+    P(y_w \succ y_l) = \sigma(r_\theta(x, y_w) - r_\theta(x, y_l))
+\end{split}
+$$</span></p>
+<p>损失函数就是让”好回答得分 &gt; 差回答得分”：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathcal{L}_{RM} = -\mathbb{E}\left[\log \sigma(r_\theta(x, y_w) -
+r_\theta(x, y_l))\right]
+\end{split}
+$$</span></p>
+<ol start="3" type="1">
+<li><strong>PPO优化</strong>：用 RM 作为环境，优化 policy（LLM）让 RM
+打分更高，同时用 KL 散度防止模型跑偏太远：</li>
+</ol>
+<p><span class="math display">$$
+\begin{split}
+    \mathcal{L}_{PPO} = \mathbb{E}\left[r_\theta(x,y) - \beta \cdot
+\text{KL}[\pi_\theta \| \pi_{ref}]\right]
+\end{split}
+$$</span></p>
+<p>同时PPO的clip机制可以防止但不更新过于激进：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathcal{L}^{CLIP} =
+\mathbb{E}\left[\min\left(\frac{\pi_\theta}{\pi_{old}} A_t,\
+\text{clip}\left(\frac{\pi_\theta}{\pi_{old}}, 1-\epsilon,
+1+\epsilon\right) A_t\right)\right]
+\end{split}
+$$</span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/RLHF_parts.png" width="80%"/></p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/PPO.png" width="80%"/></p>
+<p>但是PPO 需要<strong>同时维护 4 个模型</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actor (policy)</td>
+<td>被训练的主模型</td>
+</tr>
+<tr>
+<td>Critic (value)</td>
+<td>估计当前状态价值</td>
+</tr>
+<tr>
+<td>Reference model</td>
+<td>计算 KL 散度的锚点</td>
+</tr>
+<tr>
+<td>Reward model</td>
+<td>打分</td>
+</tr>
+</tbody>
+</table>
+<p>显存压力极大，这也是 DPO 和 GRPO 出现的动机。并且 PPO
+还有一些其他的问题：</p>
+<ul>
+<li>Reward Hacking：模型学会”讨好”RM 而非真正对齐</li>
+<li>工程复杂，稳定性差，超参敏感</li>
+</ul>
+<hr />
+<h1 id="dpo-及变体">2. DPO 及变体</h1>
+<h2 id="dpo-核心思路">DPO 核心思路</h2>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2305.18290">Direct Preference
+Optimization: Your Language Model is Secretly a Reward Model</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/DPO.png" width="80%"/></p>
+<p>DPO 的洞见是：<strong>RLHF 的最优解有闭合形式，不需要显式训练
+RM</strong>。从 RLHF 目标出发，最优 policy 满足：</p>
+<p><span class="math display">$$
+\begin{split}
+    \pi^*(y|x) = \frac{\pi_{ref}(y|x)}{Z(x)}
+\exp\left(\frac{r(x,y)}{\beta}\right)
+\end{split}
+$$</span></p>
+<p>反推出 reward 可以用 policy 表示：</p>
+<p><span class="math display">$$
+\begin{split}
+    r(x,y) = \beta \log \frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)} + \beta
+\log Z(x)
+\end{split}
+$$</span></p>
+<p>代入 RM 的偏好损失（<span
+class="math inline"><em>Z</em>(<em>x</em>)</span>
+在成对比较中消掉），得到 <strong>DPO 损失</strong>：</p>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{\mathcal{L}_{DPO} = -\mathbb{E}\left[\log \sigma\left(\beta
+\log \frac{\pi_\theta(y_w|x)}{\pi_{ref}(y_w|x)} - \beta \log
+\frac{\pi_\theta(y_l|x)}{\pi_{ref}(y_l|x)}\right)\right]}
+\end{split}
+$$</span></p>
+<p>这个损失就相当于隐式reward差：Δ = (好回答相对ref的提升) -
+(差回答相对ref的提升)，DPO就是让 Δ
+尽可能大，用sigmoid压成概率后做交叉熵。不需要评委并直接告诉模型：“好回答相对参考模型的提升幅度，要大于差回答的提升幅度”，它的目标非常简单粗暴，让模型生成
+<span class="math inline"><em>y</em><sub><em>w</em></sub></span>
+的概率远远大于生成 <span
+class="math inline"><em>y</em><sub><em>l</em></sub></span>
+的概率，可以省去 RM 和 Critic 两个阶段的模型。</p>
+<h2 id="ipo-变体">IPO 变体</h2>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.12036">A General
+Theoretical Paradigm to Understand Learning from Human
+Preferences</a></p>
+<p><strong>DPO
+的问题：</strong>DPO在理论上有一个隐患，它假设数据是完全满足Bradley-Terry模型，但是当数据量有限的时候，模型会过拟合到训练偏好，即
+<span class="math inline"><em>π</em><sub><em>θ</em></sub></span> 对
+<span class="math inline"><em>y</em><sub><em>w</em></sub></span>
+的概率趋近于 1 时导致梯度消失。</p>
+<blockquote>
+<p><strong>问题的数学描述：</strong></p>
+<p>DPO的目标等价于最大化：<span class="math inline">$h_\theta(x,y_w,y_l)
+= \log\frac{\pi_\theta(y_w|x)}{\pi_{ref}(y_w|x)} -
+\log\frac{\pi_\theta(y_l|x)}{\pi_{ref}(y_l|x)}$</span>，DPO希望这个值越大越好（没有上界），这会导致无限过拟合。</p>
+</blockquote>
+<p>IPO（Identity Preference Optimization） 则加入了一个固定的margin
+<span class="math inline">$\frac{1}{2\beta}$</span> 来约束上界：</p>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{\mathcal{L}_{IPO} = \mathbb{E}\left[\left(h_\theta(x,y_w,y_l)
+- \frac{1}{2\beta}\right)^2\right]}
+\end{split}
+$$</span></p>
+<p>并且改用平方损失代替对数损失，加正则避免过拟合：</p>
+<p><span class="math display">$$\mathcal{L}_{IPO} =
+\mathbb{E}\left[\left(\log \frac{\pi_\theta(y_w|x)}{\pi_{ref}(y_w|x)} -
+\log \frac{\pi_\theta(y_l|x)}{\pi_{ref}(y_l|x)} -
+\frac{1}{2\beta}\right)^2\right]$$</span></p>
+<blockquote>
+<p>直觉：不只是”好的比坏的高”，而是”好的比坏的高一个固定量”。</p>
+</blockquote>
+<p>IPO
+一般用于数据量较少、训练轮次多的时候，可以防止过拟合，训练更稳定。</p>
+<h2 id="kto-变体">KTO 变体</h2>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.01306">KTO: Model Alignment
+as Prospect Theoretic Optimization</a></p>
+<p>核心问题在于：DPO和IPO都需要成对数据 <span
+class="math inline">(<em>y</em><sub><em>w</em></sub>, <em>y</em><sub><em>l</em></sub>)</span>
+，但现实中人类标注时会更自然说这个回答好/坏，而不是“A比B好”这样的配对比较，配对数据标注成本也是单条标注的。</p>
+<blockquote>
+<p>理论基础：Kahneman-Tversky 前景理论</p>
+<p>人类对收益和损失的感知是<strong>不对称的</strong>，比如损失100元的痛苦是要大于获得100元的快乐的。用数学描述就是：</p>
+<p><span class="math display">$$
+\begin{split}
+  U = \begin{cases} v(gain) &amp; \text{如果结果比参考点好} \\ -\lambda
+\cdot v(loss) &amp; \text{如果结果比参考点差} \end{cases}
+\end{split}
+$$</span></p>
+<p><span class="math inline"><em>λ</em></span> 是损失厌恶系数，通常大于
+1。</p>
+</blockquote>
+<p>KTO（Kahneman-Tversky
+Optimization）则基于前景理论（人对损失比收益更敏感），对每条数据单独判断好/坏。具体来说，KTO
+设定了一个参考点 <span
+class="math inline"><em>z</em><sub><em>r</em><em>e</em><em>f</em></sub></span>（基准KL散度）：</p>
+<p><span class="math display">$$
+\begin{split}
+    z_{ref} = \text{KL}[\pi_\theta(y|x) \| \pi_{ref}(y|x)]
+\end{split}
+$$</span></p>
+<p>基于前景理论（人对损失比收益更敏感），对每条数据单独判断好/坏，，好回答在基准线之上就奖励，差回答在基准线之下就惩罚：：</p>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{\mathcal{L}_{KTO} = \mathbb{E}\left[w(y) \cdot \left(1 -
+\sigma\left(\beta \log\frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)} -
+z_{ref}\right)\right)\right]}
+\end{split}
+$$</span></p>
+<p>其中权重 <span class="math inline"><em>w</em>(<em>y</em>)</span>
+区分好坏：</p>
+<p><span class="math display">$$
+\begin{split}
+    w(y) = \begin{cases} \lambda_w &amp; \text{如果 } y \text{
+是好回答（chosen）} \\ \lambda_l &amp; \text{如果 } y \text{
+是差回答（rejected）} \end{cases}
+\end{split}
+$$</span></p>
+<p>通常设 <span
+class="math inline"><em>λ</em><sub><em>l</em></sub> &gt; <em>λ</em><sub><em>w</em></sub></span>，体现损失厌恶的不对称。</p>
+<h2 id="simpo-变体">SimPO 变体</h2>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.14734">SimPO: Simple
+Preference Optimization with a Reference-Free Reward</a></p>
+<p>之前的 DPO 依赖 <span
+class="math inline"><em>π</em><sub><em>r</em><em>e</em><em>f</em></sub></span>（参考模型），推理时需要加载两个模型，并且DPO倾向于生成更长的回答（因为长序列的
+log-prob 总和更大）。</p>
+<p>因此 SimPO（Simple Preference Optimization) 的两个关键设计在于：</p>
+<ul>
+<li>用<strong>长度归一化</strong>的 log-prob
+代替比值（避免模型偏向长回答）：DPO 的隐式 reward 是 <span
+class="math inline"> ∝ ∑log <em>p</em>(<em>t</em><em>o</em><em>k</em><em>e</em><em>n</em>)</span>，SimPO
+则改成 <span class="math inline">$∝\frac{1}{|y|} \sum \log
+p(token)$</span>，做了长度归一化，并且去掉了参考模型，直接用长度归一化的log-prob作为隐式reward：</li>
+</ul>
+<p><span class="math display">$$
+\begin{split}
+    r_{SimPO}(x,y) = \frac{1}{|y|} \log \pi_\theta(y|x) = \frac{1}{|y|}
+\sum_{t=1}^{|y|} \log \pi_\theta(y_t | x, y_{&lt;t})
+\end{split}
+$$</span></p>
+<ul>
+<li>加 margin <span
+class="math inline"><em>γ</em></span>，强制好坏之间有一定差距：DPO强调只要好回答比坏回答更好就行，SimPO
+则要求好回答比坏回答至少好 <span
+class="math inline"><em>γ</em></span>：</li>
+</ul>
+<p><span class="math display">$$
+\begin{split}
+    \boxed{\mathcal{L}_{SimPO} = -\mathbb{E}\left[\log
+\sigma\left(\frac{\beta}{|y_w|}\log\pi_\theta(y_w|x) -
+\frac{\beta}{|y_l|}\log\pi_\theta(y_l|x) - \gamma\right)\right]}
+\end{split}
+$$</span></p>
+<h2 id="各变体总结">各变体总结</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">你的数据是成对的吗？</span><br><span class="line">├── 否 → KTO（唯一选择）</span><br><span class="line">└── 是 → 继续判断</span><br><span class="line">        │</span><br><span class="line">        显存紧张吗？</span><br><span class="line">        ├── 是 → SimPO（去掉ref模型）</span><br><span class="line">        └── 否 → 继续判断</span><br><span class="line">                │</span><br><span class="line">                担心过拟合吗？（数据量少/训练轮次多）</span><br><span class="line">                ├── 是 → IPO</span><br><span class="line">                └── 否 → DPO（最成熟，生态最好）</span><br></pre></td></tr></table></figure>
+<hr />
+<h1 id="grpo">3. GRPO</h1>
+<p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.03300">DeepSeekMath:
+Pushing the Limits of Mathematical Reasoning in Open Language
+Models</a></p>
+<h2 id="背景">背景</h2>
+<p>PPO是当时的通用RL算法，但是这个算法用到LLM上时暴露了一个核心问题：<strong>需要同时维护
+4 个模型</strong>（Actor、Critic、Reference model、Reward
+model），显存压力极大，尤其是 Reward model 和 Critic
+都是大模型。并且之后LLM社区的重点开始从“对话对齐”转向复杂推理（数学、代码、逻辑等），这些场景下的
+reward
+有一个新的特点：<strong>reward可以直接被精确定义</strong>，当reward可以被精确计算的时候，花大代价再训练一个RM就比较浪费了。</p>
+<h3 id="核心思路">核心思路</h3>
+<p>之前的PPO中的critic模型太贵，DPO需要预先收集好配队的偏好数据，数据清洗很复杂。而GRPO的逻辑是：<strong>我不需要绝对的好坏裁判，我只要相对的排名</strong>。对于此，GRPO的操作流程是这样的：</p>
+<ol type="1">
+<li>输入同一个问题 <span
+class="math inline"><em>x</em></span>，比如“9.11和9.8哪个更大？”；</li>
+<li>群发（sampling）：让模型生成一组答案（比如 <span
+class="math inline"><em>G</em> = 16</span> 个）；</li>
+<li>对于Math/Code任务，可以直接用规则硬解来打分；</li>
+<li>对于Text等任务，可以调用一个已经训练好的Reward
+Model来当评委打分。</li>
+</ol>
+<p><strong>组内归一化打分：</strong>GRPO不关心每个回答具体的分数，而是关心在这一组答案中每个答案的排名是怎样的。具体来说，它计算每个答案的优势是基于组内平均值的：</p>
+<p><span class="math display">$$
+\begin{split}
+    A_i = \frac{r_i - \text{mean}(r_{group})}{\text{std}(r_{group}) +
+\epsilon}
+\end{split}
+$$</span></p>
+<ul>
+<li>如果这一组中，大家得分都很低（都是0分），那么 <span
+class="math inline"><em>A</em><sub><em>i</em></sub></span>
+就会是0，模型不会被奖励也不会被惩罚；</li>
+<li>如果这一组中，其中只有一个回答是对的，其余都是错的，那么这个好回答的
+<span class="math inline"><em>A</em><sub><em>i</em></sub></span>
+就会非常大，模型会被强烈奖励，其余回答的 <span
+class="math inline"><em>A</em><sub><em>i</em></sub></span>
+就会是负的。</li>
+</ul>
+<p>基于上面的组内归一化优势 <span
+class="math inline"><em>A</em><sub><em>i</em></sub></span>，GRPO实际上就变成了一个省去critic模型的PPO，而且他不用DPO那样需要成对数据：</p>
+<p><span class="math display">$$
+\begin{split}
+    L_{\text{GRPO}} = \frac{1}{G} \sum_{i=1}^G \left( \underbrace{\min
+\left( \frac{\pi_{\theta}(o_i)}{\pi_{\theta_{\text{old}}}(o_i)} A_i, \
+\text{clip}(\dots) A_i \right)}_{\text{限制更新幅度}} - \beta
+\text{KL}(\pi_{\theta} || \pi_{\text{ref}}) \right)
+\end{split}
+$$</span></p>
+<p>从这个损失函数也能看到，现在的GRPO不再只盯着一个数据点来看，而是把这一组里生成的G个样本放在一起来看，通过最大化这一组的综合表现来优化策略。</p>
+<p>同时这里也保留了PPO中的clip截断，因为强化学习的训练过程非常不稳定（Rollar
+Coaster效应），clip机制可以防止模型更新过于激进，导致性能崩盘。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/GRPO.png" width="80%"/></p>
+<h2 id="grpo的痛点">GRPO的痛点</h2>
+<p>GRPO虽然省去了critic模型和对数据构造的高要求，但是它也有一些新的痛点：</p>
+<ul>
+<li>采样成本高：GRPO每一轮训练都必须针对同一个问题生成一组样本，训练过程中Actor的负担会加重；</li>
+<li>对冷启动要求高：GRPO的核心逻辑是矮子里拔高个，如果SFT模型的表现太差，生成的一组答案全部都是错的，会导致优势
+<span class="math inline"><em>A</em><sub><em>i</em></sub></span>
+全部是0，梯度消失，GRPO原地空转。因此GRPO非常依赖SFT阶段模型就具备高质量的输出能力，所以业界在大模型进入SFT和强化学习之前，一般还会多一步mid-training；</li>
+<li>奖励函数难以设计：如果是在Math/Code领域，奖励非常客观；但是如果是在其他领域，GRPO就又得依赖一个额外的Reward
+Model来打分。</li>
+</ul>
+<hr />
+<h1 id="prm-和-orm">4. PRM 和 ORM</h1>
+<h2 id="cotchain-of-thought">CoT（Chain-of-Thought）</h2>
+<p>2022年之前，LLM 解题的方式是<strong>直接输出答案</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q: 小明有5个苹果，给了小红2个，又买了3个，还有几个？</span><br><span class="line">A: 6个</span><br></pre></td></tr></table></figure>
+<p>这对简单题没问题，但复杂推理题直接输出答案效果很差——模型没有”思考空间”。</p>
+<p><strong>论文</strong>：<a
+target="_blank" rel="noopener" href="https://arxiv.org/abs/2201.11903">Chain-of-Thought Prompting
+Elicits Reasoning in Large Language Models</a></p>
+<p>CoT则是让模型在输出答案之前，<strong>显式写出中间推理步骤</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Q: 小明有5个苹果，给了小红2个，又买了3个，还有几个？</span><br><span class="line"></span><br><span class="line">A: 小明一开始有5个苹果。</span><br><span class="line">   给了小红2个，剩下 5-2=3 个。</span><br><span class="line">   又买了3个，现在有 3+3=6 个。</span><br><span class="line">   所以答案是6个。</span><br></pre></td></tr></table></figure>
+<p>这个”一步一步写出来”的过程就叫
+<strong>Chain-of-Thought</strong>。它本质上是把一个难问题分解成多个简单问题的序列，每一步对模型来说都更容易，而且中间结论为下一步提供了上下文。</p>
+<h3 id="cot-的实现方式">CoT 的实现方式</h3>
+<p><strong>方式一：Few-shot CoT Prompting（无需训练）</strong></p>
+<p>在 prompt 里放几个带推理过程的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">示例1：</span><br><span class="line">Q: [问题]</span><br><span class="line">A: [推理步骤1]</span><br><span class="line">   [推理步骤2]</span><br><span class="line">   所以答案是[X]</span><br><span class="line"></span><br><span class="line">示例2：...</span><br><span class="line"></span><br><span class="line">现在回答：</span><br><span class="line">Q: [新问题]</span><br><span class="line">A: [模型自动模仿格式生成推理]</span><br></pre></td></tr></table></figure>
+<p><strong>方式二：Zero-shot CoT（更简单）</strong></p>
+<p>只需在问题后加一句魔法咒语：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q: [问题]</span><br><span class="line">A: Let&#x27;s think step by step.  ← 就这一句</span><br></pre></td></tr></table></figure>
+<p>实验发现这句话能显著提升推理准确率，说明能力本来就在模型里，只是需要被激活。</p>
+<p><strong>方式三：SFT 训练 CoT（训练进模型）</strong></p>
+<p>用大量带推理链的数据做监督微调，让模型默认就会写 CoT：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">训练数据格式：</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;input&quot;</span>: <span class="string">&quot;问题&quot;</span>,</span><br><span class="line">  <span class="string">&quot;output&quot;</span>: <span class="string">&quot;\n推理+最终答案&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DeepSeek-R1、QwQ 等推理模型就是这样训练的。</p>
+<h2 id="ormoutcome-reward-model">ORM（Outcome Reward Model）</h2>
+<p>ORM 是<strong>只对最终结果打分</strong>的奖励模型：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/ORM.png" width="80%"/></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">问题 → [推理过程（CoT）] → 最终答案</span><br><span class="line">                                  ↑</span><br><span class="line">                          ORM 只在这里打分</span><br></pre></td></tr></table></figure>
+<p><strong>ORM 的优势：</strong></p>
+<ul>
+<li>实现简单，标注成本低（只需要最终答案的对错）；</li>
+<li>规则验证时信号完全干净；</li>
+<li>和 GRPO 天然配合（直接当 reward function）。</li>
+</ul>
+<p><strong>ORM 的根本局限</strong></p>
+<p>一个例子说明问题：中间步骤有错误，但最终结论碰巧对了，ORM
+给了满分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Q: 证明√2是无理数</span><br><span class="line"></span><br><span class="line">模型输出：</span><br><span class="line">  Step1: 假设√2 = p/q（p,q互质）</span><br><span class="line">  Step2: 则 2 = p²/q²，即 p² = 2q²</span><br><span class="line">  Step3: 所以 p² 是偶数，则 p 是奇数  ← 错误！（p应该是偶数）</span><br><span class="line">  Step4: 设 p = 2k，则 4k² = 2q²，即 q² = 2k²</span><br><span class="line">  Step5: 所以 q 也是偶数，与互质矛盾</span><br><span class="line">  Step6: 所以√2是无理数  ✓</span><br><span class="line"></span><br><span class="line">ORM 打分：答案正确 → reward = 1</span><br></pre></td></tr></table></figure>
+<p>这就是 ORM
+的核心问题：<strong>无法感知推理过程的质量</strong>，只看结果。这在数学、逻辑等需要严格推理的任务中是致命缺陷。</p>
+<h2 id="prmprocess-reward-model">PRM（Process Reward Model）</h2>
+<p>PRM 对<strong>推理过程的每一步</strong>单独打分：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/PRM.png" width="80%"/></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">问题 → Step1 → Step2 → Step3 → ... → 最终答案</span><br><span class="line">         ↑        ↑        ↑</span><br><span class="line">       打分1    打分2    打分3</span><br></pre></td></tr></table></figure>
+<h3 id="prm的标注方式">PRM的标注方式</h3>
+<p>PRM
+需要步骤级别的标注，这是最大的成本来源。具体来说有以下几种标注方式：</p>
+<ul>
+<li><strong>方式一：人工标注</strong>：人工对每个推理步骤标注
+正确/错误/中性，质量高、但成本极高。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Step1: 假设√2 = p/q（p,q互质）  → ✅ 正确</span><br><span class="line">Step2: 则 p² = 2q²               → ✅ 正确</span><br><span class="line">Step3: 所以 p 是奇数              → ❌ 错误</span><br><span class="line">Step4: ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>方式二：蒙特卡洛估计（自动标注）</strong>：对每个中间步骤，用模型<strong>随机采样后续推理</strong>若干次，看最终答案的正确率。如果从某一步出发，后续有
+80% 的概率能得到正确答案，说明这一步是好的；如果只有
+10%，说明这一步可能有问题。</p></li>
+<li><p><strong>方式三：模型自动生成（更scalable）</strong>：用强模型生成带标注的推理链，再训练
+PRM：</p></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">强模型（如 GPT-4）:</span><br><span class="line">  生成推理链 → 标注每步对错 → 作为训练数据</span><br><span class="line">弱模型:</span><br><span class="line">  用上面的数据训练 PRM</span><br></pre></td></tr></table></figure>
+<h3 id="prm-的训练">PRM 的训练</h3>
+<p>把每个步骤看成一个二分类问题（正确/错误）：</p>
+<p><span class="math display">$$
+\begin{split}
+    \mathcal{L}_{PRM} = -\sum_{k=1}^{K} \left[l_k \log p_\theta(s_k) +
+(1-l_k)\log(1-p_\theta(s_k))\right]
+\end{split}
+$$</span></p>
+<p>其中： - <span class="math inline"><em>K</em></span> 是推理步骤总数 -
+<span
+class="math inline"><em>l</em><sub><em>k</em></sub> ∈ {0, 1}</span> 是第
+<span class="math inline"><em>k</em></span> 步的标注 - <span
+class="math inline"><em>p</em><sub><em>θ</em></sub>(<em>s</em><sub><em>k</em></sub>)</span>
+是模型对第 <span class="math inline"><em>k</em></span>
+步正确性的预测概率</p>
+<p><strong>关键实现细节</strong>：如何让模型知道”步骤边界”在哪？通常用特殊
+token 标记：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Step1的文本 [STEP_END] Step2的文本 [STEP_END] ...</span><br><span class="line">                ↑</span><br><span class="line">         在这个token位置提取隐藏状态，输入分类头</span><br></pre></td></tr></table></figure>
+<hr />
+<h1 id="推理型大模型">5. 推理型大模型</h1>
+<p>关于更多的图解可以参考：<a
+target="_blank" rel="noopener" href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-reasoning-llms?utm_campaign=post&amp;utm_medium=web">A
+Visual Guide to Reasoning LLMs</a></p>
+<p>什么是推理型大模型：通常是指将推理过程和答案一起输出的大模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/reasoningLLM.png" width="80%"/></p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/reasoningLLM2.png" width="80%"/></p>
+<h2 id="推理时计算的形式">推理时计算的形式</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/20260520173023783.png" width="80%"/></p>
+<p>推理型大模型在推理时的计算形式可以分为两类：</p>
+<ol type="1">
+<li><strong>Search against
+Verifiers</strong>：利用verifiers来进行搜索，直观理解就是采样生成多个候选答案，然后用verifier来打分挑选最佳答案；</li>
+<li><strong>Modifying Proposal
+Distribution</strong>：直接修改输入分布，类似于之后额外加一个SFT阶段，训练模型主动生成更优质的推理步骤。</li>
+</ol>
+<h3 id="search-against-verifiers">Search against Verifiers</h3>
+<p>这个过程通常包含两个主要步骤：</p>
+<ol type="1">
+<li>生成多个推理过程及其对应答案；</li>
+<li>使用一个 verifier
+模型（奖励模型）对这些推理过程进行评分，通常verifier模型也是一个经过微调的LLM，用于评判大模型的结果（ORM）或者大模型的思考过程（PRM）。</li>
+</ol>
+<h4 id="多数投票法majority-voting">多数投票法（Majority Voting）</h4>
+<p>这种方法是最简单的推理方式，不使用任何verifier模型，而是直接让模型生成多个答案，然后选出出现频率最高的那个作为最终答案。</p>
+<h4 id="best-of-n-样本">Best-of-N 样本</h4>
+<p>这种方法的核心思路是：生成N个答案样本，然后使用verifier模型（通常是ORM）来对每个答案进行判断，选出得分最高的那个作为答案。</p>
+<p>但是如果想评估的不只是答案，还包括推理过程，则可以使用PRM来对每个推理步骤进行打分，并选取综合得分最高的推理链作为最终输出。</p>
+<p>我们还可以让verifier模型分别对每个答案进行加权，然后选出综合得分最高的那一个，这种方法称为<strong>Weighted
+Best-of-N</strong>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/20260520174542861.png" width="80%"/></p>
+<h4 id="beam-search">Beam Search</h4>
+<p>类似于Tree-of-Thought，我们可以使用PRM对每一步推理进行打分，在此过程中追踪评分最高的若干条“beam”：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/20260520174900671.png" width="80%"/></p>
+<h4 id="mctsmonte-carlo-tree-search">MCTS（Monte Carlo Tree
+Search）</h4>
+<p>蒙特卡洛搜索树（MCTS）是在搜索树中高效寻找最优路径的一种方法，通常包括四个步骤：</p>
+<ol type="1">
+<li><p>Selection：根据特定公式（例如上置信界
+UCB）选择当前树中的某个叶子节点。</p></li>
+<li><p>Expand：在该叶子节点处创建额外的子节点（新的推理步骤）。</p></li>
+<li><p>Rollouts：对新生成的节点进行若干次随机扩展，直到到达最终答案。</p></li>
+<li><p>Backprop：将模拟中获得的分数或奖励向上更新到父节点。</p></li>
+</ol>
+<h3 id="modifying-proposal-distribution">Modifying Proposal
+Distribution</h3>
+<p>与利用verifier（着重输出）来搜索正确推理步骤不同，这种方法会训练模型主动生成更优质的推理步骤（着重输入）。</p>
+<h4 id="prompting">Prompting</h4>
+<p>在 prompt engineering 中，我们会通过更新 prompt
+来改善输出，同时也可以引导模型显式或隐式地展示思考过程，这里就是之前的
+CoT
+了，可以给模型提供示例（上下文学习）诱导模型生成更具有推理倾向的回答，即few-shot；也可以直接在问题后加一句魔法咒语（zero-shot）来激活模型的推理能力，let’s
+think step by step。</p>
+<p>但是需要注意，这种方法是静态线性的，缺少自我修正机制，一旦模型开始的推理出现错误，它会沿着这个错误的思路继续下去，得不到修正。</p>
+<h4 id="starself-taught-reasoner">STaR：Self-Taught Reasoner</h4>
+<p>除了提示工程，另一个思路是让模型通过学习来进行推理，一个典型的例子就是
+STaR（Self-Taught Reasoner）。STaR
+的核心思路是：<strong>让模型自己生成带有推理步骤的答案，并用这些答案来训练自己</strong>。具体来说，STaR
+的训练流程如下：</p>
+<p>模型先在步骤1中生成推理步骤和答案，如果答案正确(2a)，则将该推理过程和最终答案一起加入到三元组数据集中(3a)，用于后续监督微调。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/STaR1.png" width="80%"/></p>
+<p>如果模型给出的答案是错误的(2b)，则为模型提供一个提示(正确答案3b)，并让它去推理为什么这个答案才是正确的(4b)，模型最终的推理过程同样会被加入到相同的三元组数据集中，用于监督微调。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/STaR2.png" width="80%"/></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io">Leo Sinclair</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://litchi-lee.github.io/2025/08/22/AI/LLM_RL/">https://litchi-lee.github.io/2025/08/22/AI/LLM_RL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://litchi-lee.github.io" target="_blank">Leo的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/08/22/AI/RLHF/" title="关于RLHF的一些学习记录"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">关于RLHF的一些学习记录</div></div><div class="info-2"><div class="info-item-1">顺手记录一些关于RLHF的知识点</div></div></div></a><a class="pagination-related" href="/2025/09/19/Algo/cpp_use/" title="C++常用STL结构体以及常用语法点"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg7.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">C++常用STL结构体以及常用语法点</div></div><div class="info-2"><div class="info-item-1">C++中常用的结构体定义和使用方法、以及常用语法点</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/06/20/AI/agent/" title="服务器配置代理"><img class="cover" src="/img/bg1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-20</div><div class="info-item-2">服务器配置代理</div></div><div class="info-2"><div class="info-item-1">在服务器中配置代理，有时候方便内网配置环境</div></div></div></a><a class="pagination-related" href="/2025/08/22/AI/RLHF/" title="关于RLHF的一些学习记录"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg9.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-22</div><div class="info-item-2">关于RLHF的一些学习记录</div></div><div class="info-2"><div class="info-item-1">顺手记录一些关于RLHF的知识点</div></div></div></a><a class="pagination-related" href="/2025/05/10/AI/tricks/" title="随手记录一些常用知识点"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-05-10</div><div class="info-item-2">随手记录一些常用知识点</div></div><div class="info-2"><div class="info-item-1">随便记录一下在模型训练中的小tricks，或是一些常用的知识点</div></div></div></a><a class="pagination-related" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-01-07</div><div class="info-item-2">B站Zomi老师科普课程</div></div><div class="info-2"><div class="info-item-1">记录一些Zomi老师在B站分享的一些大模型相关知识点</div></div></div></a><a class="pagination-related" href="/2025/12/15/SSR/wss_lesson/" title="B站王树森老师推荐系统公开课"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-12-15</div><div class="info-item-2">B站王树森老师推荐系统公开课</div></div><div class="info-2"><div class="info-item-1">记录一些王树森老师在B站公开课中分享的推荐系统相关知识点</div></div></div></a><a class="pagination-related" href="/2026/02/24/SSR/xhs_landing/" title="小红书实习landing记录"><img class="cover" src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-24</div><div class="info-item-2">小红书实习landing记录</div></div><div class="info-2"><div class="info-item-1">记录一些小红书landing笔记</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/img0.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Leo Sinclair</div><div class="author-info-description">玻璃晴朗，橘子辉煌</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">45</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/litchi-lee"><i class="fab fa-github"></i><span>Follow</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/litchi-lee" target="_blank" title="GitHub"><i class="fab fa-github" style="color: #000000;"></i></a><a class="social-icon" href="https://www.xiaohongshu.com/user/profile/60fb9dc1000000000100bb80" target="_blank" title="小红书"><i class="fa-solid fa-book" style="color: #FF2442;"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=468573557" target="_blank" title="网易云音乐"><i class="fa-solid fa-compact-disc" style="color: #D33A31;"></i></a><a class="social-icon" href="https://zh-cn.duolingo.com/profile/ph.DZWt6C" target="_blank" title="Duolingo"><i class="fa-brands fa-duolingo" style="color: #58CC02;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">warning：博主精神状态待观察</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rlhfppo"><span class="toc-text">1. RLHF（PPO）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#dpo-%E5%8F%8A%E5%8F%98%E4%BD%93"><span class="toc-text">2. DPO 及变体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dpo-%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">DPO 核心思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ipo-%E5%8F%98%E4%BD%93"><span class="toc-text">IPO 变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kto-%E5%8F%98%E4%BD%93"><span class="toc-text">KTO 变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simpo-%E5%8F%98%E4%BD%93"><span class="toc-text">SimPO 变体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E5%8F%98%E4%BD%93%E6%80%BB%E7%BB%93"><span class="toc-text">各变体总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#grpo"><span class="toc-text">3. GRPO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="toc-text">核心思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grpo%E7%9A%84%E7%97%9B%E7%82%B9"><span class="toc-text">GRPO的痛点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#prm-%E5%92%8C-orm"><span class="toc-text">4. PRM 和 ORM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cotchain-of-thought"><span class="toc-text">CoT（Chain-of-Thought）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cot-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">CoT 的实现方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ormoutcome-reward-model"><span class="toc-text">ORM（Outcome Reward Model）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prmprocess-reward-model"><span class="toc-text">PRM（Process Reward Model）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#prm%E7%9A%84%E6%A0%87%E6%B3%A8%E6%96%B9%E5%BC%8F"><span class="toc-text">PRM的标注方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prm-%E7%9A%84%E8%AE%AD%E7%BB%83"><span class="toc-text">PRM 的训练</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E5%9E%8B%E5%A4%A7%E6%A8%A1%E5%9E%8B"><span class="toc-text">5. 推理型大模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="toc-text">推理时计算的形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#search-against-verifiers"><span class="toc-text">Search against Verifiers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E6%95%B0%E6%8A%95%E7%A5%A8%E6%B3%95majority-voting"><span class="toc-text">多数投票法（Majority Voting）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#best-of-n-%E6%A0%B7%E6%9C%AC"><span class="toc-text">Best-of-N 样本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#beam-search"><span class="toc-text">Beam Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mctsmonte-carlo-tree-search"><span class="toc-text">MCTS（Monte Carlo Tree
+Search）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#modifying-proposal-distribution"><span class="toc-text">Modifying Proposal
+Distribution</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#prompting"><span class="toc-text">Prompting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#starself-taught-reasoner"><span class="toc-text">STaR：Self-Taught Reasoner</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/11/AI/LLM/" title="无标题"><img src="/img/bg4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无标题"/></a><div class="content"><a class="title" href="/2026/03/11/AI/LLM/" title="无标题">无标题</a><time datetime="2026-03-11T11:01:47.449Z" title="发表于 2026-03-11 19:01:47">2026-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/27/AIGC/JiT/" title="PixelDiT &amp; JiT总结"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PixelDiT &amp; JiT总结"/></a><div class="content"><a class="title" href="/2026/02/27/AIGC/JiT/" title="PixelDiT &amp; JiT总结">PixelDiT &amp; JiT总结</a><time datetime="2026-02-26T16:00:00.000Z" title="发表于 2026-02-27 00:00:00">2026-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/27/AIGC/Flow_Matching/" title="Flow Matching简要介绍"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg7.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Flow Matching简要介绍"/></a><div class="content"><a class="title" href="/2026/02/27/AIGC/Flow_Matching/" title="Flow Matching简要介绍">Flow Matching简要介绍</a><time datetime="2026-02-26T16:00:00.000Z" title="发表于 2026-02-27 00:00:00">2026-02-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/SSR/xhs_landing/" title="小红书实习landing记录"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="小红书实习landing记录"/></a><div class="content"><a class="title" href="/2026/02/24/SSR/xhs_landing/" title="小红书实习landing记录">小红书实习landing记录</a><time datetime="2026-02-23T16:00:00.000Z" title="发表于 2026-02-24 00:00:00">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程"><img src="https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/bg6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="B站Zomi老师科普课程"/></a><div class="content"><a class="title" href="/2026/01/07/LLM/zomi_lesson/" title="B站Zomi老师科普课程">B站Zomi老师科普课程</a><time datetime="2026-01-06T16:00:00.000Z" title="发表于 2026-01-07 00:00:00">2026-01-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/img3.png);"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By Leo Sinclair</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div><div class="footer_custom_text">In case I don't see you, good morning, good afternoon, and good night.</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="aplayer" class="aplayer no-destroy" data-fixed="true" data-mini="false"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (window.ap) return;
+
+  window.ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: true,
+    order: 'random',
+    loop: 'all',
+    preload: 'metadata',
+    volume: 0.7,
+    audio: [
+      {
+        "title": "L'amore Dice Ciao",
+        "author": "Armando Trovajoli",
+        "url": "/music/audio1.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover1.png"
+      },
+      {
+        "title": "Gymnopedie No.1",
+        "author": "Erik Satie",
+        "url": "/music/audio2.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover2.png"
+      },
+      {
+        "title": "Ladyfingers Lofi",
+        "author": "Max Riser",
+        "url": "/music/audio3.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      },
+      {
+        "title": "Lujon",
+        "author": "Henry Mancini",
+        "url": "/music/audio4.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover4.png"
+      },
+      {
+        "title": "パッション･フラワー",
+        "author": "細野晴臣/鈴木茂/山下達郎",
+        "url": "/music/audio8.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover8.png"
+      },
+      {
+        "title": "Snowfall",
+        "author": "Tsundere Twintails",
+        "url": "/music/audio10.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover10.png"
+      },
+      {
+        "title": "New Look",
+        "author": "Secret Potion / Lofi Beats To Chill Study Sleep",
+        "url": "/music/audio0.mp3",
+        "pic": "https://cdn.jsdelivr.net/gh/litchi-lee/Images_shop@main/images/audio_cover3.png"
+      }
+    ]
+  });
+});
+
+// 关键：pjax 页面切换时不要销毁播放器
+document.addEventListener("pjax:complete", function () {
+  if (window.ap && window.ap.list) {
+    // 切换页面后刷新 UI，而不是重新 new
+    window.ap.list.switch(window.ap.list.index);
+  }
+});
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
